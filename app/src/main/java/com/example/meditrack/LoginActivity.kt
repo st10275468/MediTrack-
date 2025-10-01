@@ -9,7 +9,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         //Text link to take the user to the register view
         val txtRegister = findViewById<TextView>(R.id.txtRegister)
             txtRegister.setOnClickListener{

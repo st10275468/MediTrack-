@@ -26,6 +26,21 @@
         <activity
             android:name=".DashboardActivity"
             android:exported="true"/>
+        <activity
+            android:name=".MapActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".ReminderActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".ScannerActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".SearchActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
