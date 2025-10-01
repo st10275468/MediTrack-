@@ -11,7 +11,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        //Login button functionality for now just to test other pages
         val btnLogin = findViewById<Button>(R.id.btnLogin)
             btnLogin.setOnClickListener{
                 val intent = Intent(this, DashboardActivity::class.java)

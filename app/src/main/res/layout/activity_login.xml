@@ -63,6 +63,8 @@
         android:backgroundTint="#55A4F0"
         android:gravity="center"
         android:textSize="18sp"
+        android:clickable="true"
+        android:enabled="true"
         app:cornerRadius="8dp" />
 
 
