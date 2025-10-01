@@ -53,23 +53,26 @@
             app:tabTextColor="#307AC3">
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tbHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Home"
                 android:textAlignment="center" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tbSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Search" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tbProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Profile" />
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabItem"
+                android:id="@+id/tbReminder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Reminders" />
@@ -129,6 +132,7 @@
                 app:rowCount="3">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvSearch"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_margin="8dp"
@@ -153,6 +157,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvReminder"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_margin="8dp"
@@ -175,6 +180,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvProfile"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_margin="8dp"
@@ -197,6 +203,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvMap"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_margin="8dp"
@@ -220,6 +227,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvScanner"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_margin="8dp"
@@ -242,6 +250,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvSettings"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_margin="8dp"

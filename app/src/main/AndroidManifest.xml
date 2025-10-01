@@ -20,27 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="true"/>
-        <activity
-            android:name=".DashboardActivity"
-            android:exported="true"/>
-        <activity
-            android:name=".MapActivity"
-            android:exported="true"/>
-        <activity
-            android:name=".ProfileActivity"
-            android:exported="true"/>
-        <activity
-            android:name=".ReminderActivity"
-            android:exported="true"/>
-        <activity
-            android:name=".ScannerActivity"
-            android:exported="true"/>
-        <activity
-            android:name=".SearchActivity"
-            android:exported="true"/>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".DashboardActivity" />
+        <activity android:name=".MapActivity"/>
+        <activity android:name=".ProfileActivity"/>
+        <activity android:name=".ReminderActivity"/>
+        <activity android:name=".ScannerActivity" />
+        <activity android:name=".SearchActivity"/>
     </application>
 
 </manifest>
