@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="144dp"
             android:outlineAmbientShadowColor="#000000"
+            app:cardElevation="4dp"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.TopSquareBottomRounded">
 
             <ImageView
@@ -38,14 +39,15 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp" />
+            android:layout_height="20dp" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/TabMenu"
-            android:layout_width="394dp"
+            android:layout_width="403dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/tab_border"
+            android:elevation="2dp"
             android:fadeScrollbars="false"
             app:tabIndicatorColor="#307BC3"
             app:tabTextColor="#307AC3">
@@ -75,7 +77,197 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp" />
+            android:layout_height="20dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="406dp"
+            android:layout_height="634dp"
+            android:layout_gravity="center"
+            android:outlineAmbientShadowColor="#000000"
+            app:cardBackgroundColor="#FDFDFD"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="4dp"
+            app:contentPadding="10dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="195dp"
+                android:layout_gravity="center_horizontal"
+                app:cardBackgroundColor="#55A4F0"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="4dp"
+                app:contentPaddingBottom="15dp"
+                app:contentPaddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="272dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|top"
+                    android:text="Welcome to MediTrack+"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="50sp" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:text="Find our features below"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.gridlayout.widget.GridLayout
+                android:layout_width="385dp"
+                android:layout_height="388dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="25dp"
+                android:padding="16dp"
+                app:columnCount="2"
+                app:rowCount="3">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginRight="15dp"
+                    app:cardBackgroundColor="#0062C1"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="4dp"
+                    app:cardMaxElevation="4dp"
+                    app:layout_column="0"
+                    app:layout_columnWeight="1"
+                    app:layout_row="0"
+                    app:layout_rowWeight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Medicine Search"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="28sp" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginLeft="15dp"
+                    app:cardBackgroundColor="#0062C1"
+                    app:cardCornerRadius="15dp"
+                    app:layout_column="1"
+                    app:layout_columnWeight="1"
+                    app:layout_row="0"
+                    app:layout_rowWeight="1">
+
+                    <TextView
+                        android:layout_width="147dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:text="Pill Reminder"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="28sp" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginRight="15dp"
+                    app:cardBackgroundColor="#0062C1"
+                    app:cardCornerRadius="15dp"
+                    app:layout_column="0"
+                    app:layout_columnWeight="1"
+                    app:layout_row="1"
+                    app:layout_rowWeight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Medical Profile"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="28sp" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginLeft="15dp"
+                    app:cardBackgroundColor="#0062C1"
+                    app:cardCornerRadius="15dp"
+                    app:layout_column="1"
+                    app:layout_columnWeight="1"
+                    app:layout_row="1"
+                    app:layout_rowWeight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:text="Pharmacy Map"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="28sp" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginRight="15dp"
+                    app:cardBackgroundColor="#0062C1"
+                    app:cardCornerRadius="15dp"
+                    app:layout_column="0"
+                    app:layout_columnWeight="1"
+                    app:layout_row="2"
+                    app:layout_rowWeight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Barcode Scanner"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="28sp" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginLeft="15dp"
+                    app:cardBackgroundColor="#0062C1"
+                    app:cardCornerRadius="15dp"
+                    app:layout_column="1"
+                    app:layout_columnWeight="1"
+                    app:layout_row="2"
+                    app:layout_rowWeight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Settings"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="28sp" />
+                </androidx.cardview.widget.CardView>
+
+            </androidx.gridlayout.widget.GridLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
 
     </LinearLayout>
 
