@@ -10,18 +10,18 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="392dp"
-        android:layout_height="330dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_gravity="center"
         app:srcCompat="@drawable/ic_meditrack_logo" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="30sp" />
+        android:layout_height="40sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_gravity="center">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -39,7 +39,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_gravity="center">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -56,7 +56,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_gravity="center">
 
         <com.google.android.material.textfield.TextInputEditText
