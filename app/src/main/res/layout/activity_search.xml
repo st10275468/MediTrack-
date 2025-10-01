@@ -1,6 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:circularflow_radiusInDP="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:outlineAmbientShadowColor="#000000"
+            app:cardElevation="4dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.TopSquareBottomRounded">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="12dp"
+                app:srcCompat="@drawable/ic_settings" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_meditrack_logo" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/TabMenu"
+            android:layout_width="403dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/tab_border"
+            android:clickable="true"
+            android:elevation="2dp"
+            android:fadeScrollbars="false"
+            app:tabIndicatorColor="#307BC3"
+            app:tabTextColor="#307AC3">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tbHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="Home"
+                android:textAlignment="center" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tbSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="Search" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tbProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="Profile" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tbReminder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="Reminders" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="406dp"
+            android:layout_height="611dp"
+            android:layout_gravity="center"
+            android:outlineAmbientShadowColor="#000000"
+            app:cardBackgroundColor="#FDFDFD"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="4dp"
+            app:contentPadding="10dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="371dp"
+                android:layout_height="68dp"
+                android:layout_gravity="center_horizontal"
+                app:cardBackgroundColor="#55A4F0"
+                app:cardCornerRadius="35dp"
+                app:cardElevation="4dp"
+                app:contentPaddingBottom="15dp"
+                app:contentPaddingTop="10dp" />
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
