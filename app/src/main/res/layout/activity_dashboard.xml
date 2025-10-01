@@ -10,12 +10,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="144dp"
-            app:contentPadding="10dp">
+            android:outlineAmbientShadowColor="#000000"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.TopSquareBottomRounded">
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -31,18 +34,27 @@
                 android:layout_gravity="center"
                 app:srcCompat="@drawable/ic_meditrack_logo" />
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <com.google.android.material.tabs.TabLayout
-            android:layout_width="406dp"
+            android:id="@+id/TabMenu"
+            android:layout_width="394dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fadeScrollbars="false">
+            android:background="@drawable/tab_border"
+            android:fadeScrollbars="false"
+            app:tabIndicatorColor="#307BC3"
+            app:tabTextColor="#307AC3">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Home" />
+                android:text="Home"
+                android:textAlignment="center" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -60,6 +72,10 @@
                 android:layout_height="wrap_content"
                 android:text="Reminders" />
         </com.google.android.material.tabs.TabLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
     </LinearLayout>
 
