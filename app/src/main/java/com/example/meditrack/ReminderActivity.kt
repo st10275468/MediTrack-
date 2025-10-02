@@ -1,8 +1,10 @@
 package com.example.meditrack
 
+import AddReminderDialogFragment
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 
 class ReminderActivity : AppCompatActivity() {
@@ -31,5 +33,11 @@ class ReminderActivity : AppCompatActivity() {
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
+
+        val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        fab.setOnClickListener {
+            AddReminderDialogFragment().show(supportFragmentManager, "add_reminder")
+        }
+
     }
 }

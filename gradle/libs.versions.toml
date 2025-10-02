@@ -12,6 +12,7 @@ constraintlayout = "2.2.1"
 gridlayout = "1.1.0"
 googleGmsGoogleServices = "4.4.3"
 firebase-bom = "33.4.0"
+appcompatVersion = "1.7.1"
 
 
 [libraries]
@@ -29,6 +30,7 @@ firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.r
 
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompatVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
