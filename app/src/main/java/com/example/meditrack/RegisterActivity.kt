@@ -53,7 +53,7 @@ class RegisterActivity : AppCompatActivity() {
             if (task.isSuccessful){
                 val user = auth.currentUser
 
-                saveUserToFirestore(user?.uid, email)
+                FireStoreHelper.saveUserToFirestore(this,user!!.uid, user.email!!)
 
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
@@ -63,17 +63,4 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveUserToFirestore(uid: String?, email: String) {
-        if (uid == null) return
-        val userMap = hashMapOf("email" to email, "createdAt" to System.currentTimeMillis())
-
-        db.collection("users").document(uid).set(userMap)
-            .addOnSuccessListener {
-                Toast.makeText(this, "Succesfully registered", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener {
-                Toast.makeText(this, "Firestore error", Toast.LENGTH_SHORT).show()
-            }
-
-    }
 }
