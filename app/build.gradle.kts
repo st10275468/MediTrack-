@@ -48,7 +48,7 @@ dependencies {
     implementation(libs.androidx.gridlayout)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.auth.ktx)
-    implementation(libs.appcompat)
+    implementation("com.google.android.gms:play-services-auth:20.6.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

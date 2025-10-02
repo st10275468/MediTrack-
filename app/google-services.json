@@ -12,7 +12,20 @@
           "package_name": "com.example.meditrack"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "934514090425-ptpnco36ai7ppalbsjq6kvisd4bo4ql4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.meditrack",
+            "certificate_hash": "cc1eb3a9add73258a0ffc10efc0590e705653a84"
+          }
+        },
+        {
+          "client_id": "934514090425-kpro9pedi1qt7rhoaj99dk19bg1okdvn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAHEG_W3Gaxd9m0dCIESoXFjpx34YwT10Q"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "934514090425-kpro9pedi1qt7rhoaj99dk19bg1okdvn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
