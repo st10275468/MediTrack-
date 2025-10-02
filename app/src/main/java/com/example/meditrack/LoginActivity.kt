@@ -12,13 +12,15 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val btnLogin = findViewById<Button>(R.id.btnLogin)
-            btnLogin.setOnClickListener{
+
+        btnLogin.setOnClickListener{
                 val intent = Intent(this, DashboardActivity::class.java)
                 startActivity(intent)
             }
 
         val txtRegister = findViewById<TextView>(R.id.txtRegister)
-            txtRegister.setOnClickListener{
+
+        txtRegister.setOnClickListener{
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
 
