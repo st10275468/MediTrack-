@@ -52,6 +52,7 @@ class AddReminderDialogFragment : DialogFragment() {
         val btnCancel = view.findViewById<Button>(R.id.btn_cancel)
         val btnSave = view.findViewById<Button>(R.id.btn_save)
 
+        //Demo meds
         val sampleMedicines = listOf("Paracetamol", "Allecet", "Corenza C" )
         val adapter = ArrayAdapter(
             requireContext(),
