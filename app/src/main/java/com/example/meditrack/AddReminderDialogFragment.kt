@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.meditrack.R
 import java.text.SimpleDateFormat
 import java.util.*
+import com.google.android.flexbox.FlexboxLayout
 
 class AddReminderDialogFragment : DialogFragment() {
 
@@ -46,7 +47,7 @@ class AddReminderDialogFragment : DialogFragment() {
         val etStart = view.findViewById<EditText>(R.id.et_start_date)
         val etEnd = view.findViewById<EditText>(R.id.et_end_date)
         val btnAddTime = view.findViewById<Button>(R.id.btn_add_time)
-        val containerTimes = view.findViewById<LinearLayout>(R.id.container_times)
+        val containerTimes = view.findViewById<FlexboxLayout>(R.id.container_times)
         val btnCancel = view.findViewById<Button>(R.id.btn_cancel)
         val btnSave = view.findViewById<Button>(R.id.btn_save)
 
@@ -82,20 +83,24 @@ class AddReminderDialogFragment : DialogFragment() {
 
         btnAddTime.setOnClickListener {
             showTimePicker { timeString ->
-                val timeView = TextView(requireContext()).apply {
+                val chip = TextView(requireContext()).apply {
                     text = timeString
-                    setPadding(14, 10, 14, 10)
-                    setBackgroundResource(android.R.drawable.dialog_holo_light_frame)
-                    val params = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    setTextColor(Color.WHITE)
+                    textSize = 16f
+                    setPadding(32, 16, 32, 16)
+                    setBackgroundResource(R.drawable.bg_time_chip)
+
+                    val params = ViewGroup.MarginLayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
                     )
-                    params.setMargins(0, 8, 0, 0)
+                    params.setMargins(24, 8, 24, 8)
                     layoutParams = params
                 }
-                containerTimes.addView(timeView)
+                containerTimes.addView(chip)
             }
         }
+
 
         btnCancel.setOnClickListener { dismiss() }
 
