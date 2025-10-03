@@ -48,8 +48,18 @@ class AddReminderDialogFragment : DialogFragment() {
         val etEnd = view.findViewById<EditText>(R.id.et_end_date)
         val btnAddTime = view.findViewById<Button>(R.id.btn_add_time)
         val containerTimes = view.findViewById<FlexboxLayout>(R.id.container_times)
+        val spinnerMedicine = view.findViewById<Spinner>(R.id.spinner_medicine)
         val btnCancel = view.findViewById<Button>(R.id.btn_cancel)
         val btnSave = view.findViewById<Button>(R.id.btn_save)
+
+        val sampleMedicines = listOf("Paracetamol", "Allecet", "Corenza C" )
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            sampleMedicines
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerMedicine.adapter = adapter
 
         fun showDatePicker(target: EditText) {
             val c = Calendar.getInstance()
@@ -105,14 +115,57 @@ class AddReminderDialogFragment : DialogFragment() {
         btnCancel.setOnClickListener { dismiss() }
 
         btnSave.setOnClickListener {
+            val user = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
+            if (user == null) {
+                Toast.makeText(requireContext(), "You must be logged in!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val spinnerMedicine = view.findViewById<Spinner>(R.id.spinner_medicine)
+            val etDosage = view.findViewById<EditText>(R.id.et_dosage)
+            val rgFrequency = view.findViewById<RadioGroup>(R.id.rg_frequency)
+
+            val medicine = spinnerMedicine.selectedItem?.toString() ?: ""
             val start = etStart.text.toString()
             val end = etEnd.text.toString()
+            val dosage = etDosage.text.toString()
+
             val times = mutableListOf<String>()
             for (i in 0 until containerTimes.childCount) {
                 val tv = containerTimes.getChildAt(i) as? TextView
                 tv?.text?.toString()?.let { times.add(it) }
             }
-            dismiss()
+
+            val frequency = when (rgFrequency.checkedRadioButtonId) {
+                R.id.rb_daily -> "Daily"
+                R.id.rb_weekly -> "Weekly"
+                R.id.rb_once -> "Once Off"
+                else -> ""
+            }
+
+            val reminderMap = hashMapOf(
+                "medicine" to medicine,
+                "startDate" to start,
+                "endDate" to end,
+                "dosage" to dosage,
+                "times" to times,
+                "frequency" to frequency,
+                "createdAt" to System.currentTimeMillis()
+            )
+
+            val db = com.google.firebase.firestore.FirebaseFirestore.getInstance()
+            db.collection("users")
+                .document(user.uid)
+                .collection("reminders")
+                .add(reminderMap)
+                .addOnSuccessListener {
+                    Toast.makeText(requireContext(), "Reminder saved!", Toast.LENGTH_SHORT).show()
+                    dismiss()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(requireContext(), "Failed to save: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
         }
+
     }
 }
