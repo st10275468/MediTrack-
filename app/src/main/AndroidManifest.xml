@@ -27,6 +27,8 @@
         <activity android:name=".ReminderActivity"/>
         <activity android:name=".ScannerActivity" />
         <activity android:name=".SearchActivity"/>
+        <activity android:name=".MedicineDetailActivity"/>
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

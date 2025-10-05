@@ -2,11 +2,18 @@ package com.example.meditrack
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
+import retrofit2.Call
 
 class SearchActivity : AppCompatActivity() {
+
+    private lateinit var adapter: MedicineAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
@@ -35,10 +42,66 @@ class SearchActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
+        val rvMedicines = findViewById<RecyclerView>(R.id.rvMedicines)
+        val svSearch = findViewById<SearchView>(R.id.svSearch)
+
+        adapter = MedicineAdapter(listOf()) { medicine ->
+            val intent = Intent(this, MedicineDetailActivity::class.java)
+            intent.putExtra("medicine_name", medicine.openfda?.brand_name?.getOrNull(0))
+            intent.putExtra("purpose", medicine.purpose?.joinToString("\n"))
+            intent.putExtra("warnings", medicine.warnings?.joinToString("\n"))
+            intent.putExtra("dosage", medicine.dosage_and_administration?.joinToString("\n"))
+            startActivity(intent)
+        }
+
+        rvMedicines.adapter = adapter
+        rvMedicines.layoutManager = LinearLayoutManager(this)
+
+        svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { searchMedicine(it) }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    if (it.isNotEmpty()) {
+                        searchMedicine(it)
+                    } else {
+                        adapter.updateMedicines(emptyList())
+                    }
+                }
+                return true
+            }
+        })
+
+
     }
+    private fun searchMedicine(userInput: String) {
+         val query = "openfda.brand_name:$userInput*"
+         RetrofitInstance.api.searchMedicine(query).enqueue(object : retrofit2.Callback<MedicineResponse> {
+            override fun onResponse(call: retrofit2.Call<MedicineResponse>, response: retrofit2.Response<MedicineResponse>) {
+                if (response.isSuccessful) {
+                    val medicines = response.body()?.results ?: emptyList()
+
+                    val filteredMedicines = medicines.filter { med ->
+                        val types = med.openfda?.product_type ?: emptyList()
+                        val isDrug = types.any { it.contains("DRUG", ignoreCase = true) }
+                        val hasBrand = !med.openfda?.brand_name.isNullOrEmpty()
+                        isDrug && hasBrand
+                    }
 
 
 
+                    adapter.updateMedicines(filteredMedicines) // update RecyclerView
+                }
+            }
+
+            override fun onFailure(call: Call<MedicineResponse>, t: Throwable) {
+                Toast.makeText(this@SearchActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
 
 
 
