@@ -5,11 +5,15 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0062C1"
+    android:backgroundTint="#54A3EE"
     app:circularflow_radiusInDP="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#000000"
+        android:backgroundTint="#0062C1"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
@@ -18,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="144dp"
             android:outlineAmbientShadowColor="#000000"
-            app:cardElevation="4dp"
+            app:cardElevation="8dp"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.TopSquareBottomRounded">
 
             <ImageView
@@ -50,7 +54,7 @@
             android:layout_gravity="center"
             android:background="@drawable/tab_border"
             android:clickable="true"
-            android:elevation="2dp"
+            android:elevation="8dp"
             android:fadeScrollbars="false"
             app:tabIndicatorColor="#307BC3"
             app:tabTextColor="#307AC3">
@@ -91,25 +95,31 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="406dp"
-            android:layout_height="584dp"
+            android:layout_height="607dp"
             android:layout_gravity="center"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             android:outlineAmbientShadowColor="#000000"
             app:cardBackgroundColor="#FDFDFD"
             app:cardCornerRadius="25dp"
-            app:cardElevation="4dp"
-            app:contentPadding="10dp">
+            app:cardElevation="8dp"
+            app:contentPadding="10dp"
+            app:contentPaddingBottom="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="565dp"
+                android:layout_height="587dp"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="346dp"
                     android:layout_height="58dp"
                     android:layout_gravity="center_horizontal"
+                    android:elevation="4dp"
                     app:cardBackgroundColor="#55A4F0"
-                    app:cardCornerRadius="35dp">
+                    app:cardCornerRadius="35dp"
+                    app:cardElevation="4dp"
+                    app:cardMaxElevation="4dp">
 
                     <TextView
                         android:id="@+id/textView3"
@@ -138,7 +148,9 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="492dp" />
+                    android:layout_height="511dp">
+
+                </androidx.recyclerview.widget.RecyclerView>
 
             </LinearLayout>
 
@@ -146,18 +158,17 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
-            android:layout_width="182dp"
+            android:layout_width="69dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="12dp"
-            android:background="#54A3EE"
             android:clickable="true"
             app:backgroundTint="#54A3EE"
             app:elevation="10dp"
-            app:pressedTranslationZ="6dp"
+            app:pressedTranslationZ="12dp"
             app:srcCompat="@drawable/ic_plus"
-            app:tint="@android:color/white" />
+            app:tint="@color/white" />
 
 
     </LinearLayout>

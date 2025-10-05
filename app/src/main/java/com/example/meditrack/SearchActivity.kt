@@ -3,6 +3,7 @@ package com.example.meditrack
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import com.google.android.material.tabs.TabLayout
 
 class SearchActivity : AppCompatActivity() {

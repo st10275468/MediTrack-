@@ -10,6 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#0062C1"
+        android:backgroundTint="#0062C1"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
@@ -103,11 +105,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="195dp"
                 android:layout_gravity="center_horizontal"
+                android:elevation="4dp"
                 app:cardBackgroundColor="#55A4F0"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="4dp"
+                app:cardMaxElevation="4dp"
                 app:contentPaddingBottom="15dp"
-                app:contentPaddingTop="10dp">
+                app:contentPaddingTop="10dp"
+                android:clipChildren="false"
+                android:clipToPadding="false">
 
                 <TextView
                     android:id="@+id/textView"
@@ -136,7 +142,9 @@
                 android:layout_marginBottom="25dp"
                 android:padding="16dp"
                 app:columnCount="2"
-                app:rowCount="3">
+                app:rowCount="3"
+                android:clipChildren="false"
+                android:clipToPadding="false">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cvSearch"
@@ -145,10 +153,14 @@
                     android:layout_margin="8dp"
                     android:layout_marginRight="15dp"
                     android:clickable="true"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:elevation="8dp"
+                    android:translationZ="8dp"
                     app:cardBackgroundColor="#0062C1"
                     app:cardCornerRadius="15dp"
-                    app:cardElevation="4dp"
-                    app:cardMaxElevation="4dp"
+                    app:cardElevation="8dp"
+                    app:cardMaxElevation="8dp"
                     app:layout_column="0"
                     app:layout_columnWeight="1"
                     app:layout_row="0"
@@ -171,12 +183,17 @@
                     android:layout_margin="8dp"
                     android:layout_marginLeft="15dp"
                     android:clickable="true"
+                    android:elevation="8dp"
                     app:cardBackgroundColor="#0062C1"
                     app:cardCornerRadius="15dp"
                     app:layout_column="1"
                     app:layout_columnWeight="1"
                     app:layout_row="0"
-                    app:layout_rowWeight="1">
+                    app:layout_rowWeight="1"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    app:cardElevation="8dp"
+                    app:cardMaxElevation="8dp">
 
                     <TextView
                         android:layout_width="147dp"
@@ -200,7 +217,11 @@
                     app:layout_column="0"
                     app:layout_columnWeight="1"
                     app:layout_row="1"
-                    app:layout_rowWeight="1">
+                    app:layout_rowWeight="1"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    app:cardElevation="8dp"
+                    app:cardMaxElevation="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -224,7 +245,11 @@
                     app:layout_column="1"
                     app:layout_columnWeight="1"
                     app:layout_row="1"
-                    app:layout_rowWeight="1">
+                    app:layout_rowWeight="1"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    app:cardElevation="8dp"
+                    app:cardMaxElevation="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -249,7 +274,11 @@
                     app:layout_column="0"
                     app:layout_columnWeight="1"
                     app:layout_row="2"
-                    app:layout_rowWeight="1">
+                    app:layout_rowWeight="1"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    app:cardElevation="8dp"
+                    app:cardMaxElevation="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -273,7 +302,11 @@
                     app:layout_column="1"
                     app:layout_columnWeight="1"
                     app:layout_row="2"
-                    app:layout_rowWeight="1">
+                    app:layout_rowWeight="1"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    app:cardElevation="8dp"
+                    app:cardMaxElevation="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"

@@ -3,7 +3,9 @@ package com.example.meditrack
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import com.google.android.material.tabs.TabItem
 import com.google.android.material.tabs.TabLayout
 
@@ -11,6 +13,35 @@ class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
+
+        val cvSearch = findViewById<CardView>(R.id.cvSearch)
+        val cvReminder = findViewById<CardView>(R.id.cvReminder)
+        val cvProfile = findViewById<CardView>(R.id.cvProfile)
+        val cvMap = findViewById<CardView>(R.id.cvMap)
+        val cvScanner = findViewById<CardView>(R.id.cvScanner)
+        val cvSettings = findViewById<CardView>(R.id.cvSettings)
+
+        cvSearch.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+        cvReminder.setOnClickListener {
+            val intent = Intent(this, ReminderActivity::class.java)
+            startActivity(intent)
+        }
+        cvProfile.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+        cvMap.setOnClickListener {
+            val intent = Intent(this, MapActivity::class.java)
+            startActivity(intent)
+        }
+        cvScanner.setOnClickListener {
+            val intent = Intent(this, ScannerActivity::class.java)
+            startActivity(intent)
+        }
+
 
         //Tab Menu functionality
         val tabMenu = findViewById<TabLayout>(R.id.TabMenu)
