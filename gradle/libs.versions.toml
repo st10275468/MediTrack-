@@ -16,6 +16,7 @@ appcompatVersion = "1.7.1"
 playServicesMaps = "19.2.0"
 fragment = "1.8.9"
 playServicesLocation = "21.3.0"
+cardview = "1.0.0"
 
 
 [libraries]
@@ -37,6 +38,7 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 androidx-fragment = { group = "androidx.fragment", name = "fragment", version.ref = "fragment" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+androidx-cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
