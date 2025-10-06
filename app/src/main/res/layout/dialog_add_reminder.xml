@@ -5,118 +5,112 @@
     android:id="@+id/dialog_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent">
+    android:background="@android:color/transparent"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp">
+        android:padding="16dp"
+        android:fillViewport="true"
+        android:clipChildren="false"
+        android:clipToPadding="false">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_root"
-                android:layout_width="407dp"
-                android:layout_height="672dp"
+                android:layout_width="344dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:translationZ="6dp"
                 app:cardBackgroundColor="@android:color/white"
-                app:cardCornerRadius="30dp"
-                app:cardElevation="8dp">
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp"
+                app:contentPaddingLeft="10dp"
+                app:contentPaddingRight="10dp">
 
                 <LinearLayout
-                    android:layout_width="407dp"
-                    android:layout_height="676dp"
+                    android:layout_width="344dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="vertical"
                     android:padding="16dp">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="354dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="8dp"
                         app:cardBackgroundColor="#55A4F0"
-                        app:cardCornerRadius="30dp">
+                        app:cardCornerRadius="30dp"
+                        app:cardElevation="4dp">
 
                         <TextView
                             android:id="@+id/textView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_marginBottom="1dp"
+                            android:layout_gravity="center"
                             android:text="Create Reminder"
                             android:textColor="#FFFFFF"
-                            android:textSize="40sp" />
+                            android:textSize="32sp" />
 
                     </androidx.cardview.widget.CardView>
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="15dp" />
+                        android:layout_height="12dp" />
 
                     <Spinner
                         android:id="@+id/spinner_medicine"
                         android:layout_width="match_parent"
-                        android:layout_height="41dp"
+                        android:layout_height="wrap_content"
                         android:spinnerMode="dropdown" />
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="15dp" />
+                        android:layout_height="12dp" />
 
-                    <LinearLayout
+                    <EditText
+                        android:id="@+id/et_start_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingTop="8dp">
-
-                        <EditText
-                            android:id="@+id/et_start_date"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:focusable="false"
-                            android:hint="Start Date"
-                            android:padding="10dp" />
-                    </LinearLayout>
+                        android:focusable="false"
+                        android:hint="Start Date"
+                        android:padding="10dp" />
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="15dp" />
+                        android:layout_height="12dp" />
 
-                    <LinearLayout
+                    <EditText
+                        android:id="@+id/et_end_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingTop="8dp">
-
-                        <EditText
-                            android:id="@+id/et_end_date"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:focusable="false"
-                            android:hint="End Date (optional)"
-                            android:padding="10dp" />
-                    </LinearLayout>
+                        android:focusable="false"
+                        android:hint="End Date (optional)"
+                        android:padding="10dp" />
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="15dp" />
+                        android:layout_height="12dp" />
 
                     <RadioGroup
                         android:id="@+id/rg_frequency"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingTop="10dp">
+                        android:orientation="horizontal">
 
                         <RadioButton
                             android:id="@+id/rb_daily"
@@ -137,60 +131,55 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:text="Once Off" />
-
                     </RadioGroup>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="201dp"
-                        android:orientation="vertical"
-                        android:paddingTop="2dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="0dp"
-                            android:text="Times"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_times"
-                            android:layout_width="match_parent"
-                            android:layout_height="103dp"
-                            android:minHeight="88dp"
-                            android:padding="12dp"
-                            app:cardBackgroundColor="#F0F0F0"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="4dp">
-
-                            <com.google.android.flexbox.FlexboxLayout
-                                android:id="@+id/container_times"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:minHeight="88dp"
-                                android:padding="8dp"
-                                app:flexDirection="row"
-                                app:flexWrap="wrap"
-                                app:justifyContent="flex_start" />
-
-                        </androidx.cardview.widget.CardView>
-
-                        <Button
-                            android:id="@+id/btn_add_time"
-                            android:layout_width="121dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_marginTop="10dp"
-                            android:backgroundTint="#54A3EE"
-                            android:text="+ Add Time"
-                            android:textColor="@android:color/white" />
-
-                    </LinearLayout>
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="15dp" />
+                        android:layout_height="12dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Times"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_times"
+                        android:layout_width="301dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="12dp"
+                        app:cardBackgroundColor="#F0F0F0"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="4dp">
+
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:id="@+id/container_times"
+                            android:layout_width="290dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:minHeight="70dp"
+                            android:padding="8dp"
+                            app:flexDirection="row"
+                            app:flexWrap="wrap"
+                            app:justifyContent="flex_start" />
+                    </androidx.cardview.widget.CardView>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_add_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:backgroundTint="#54A3EE"
+                        android:elevation="12dp"
+                        android:text="+ Add Time"
+                        android:textColor="@android:color/white"
+                        android:translationZ="12dp" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="12dp" />
 
                     <EditText
                         android:id="@+id/et_dosage"
@@ -199,34 +188,39 @@
                         android:hint="Dosage e.g. 2 Tablets or 50ml"
                         android:paddingTop="5dp" />
 
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="12dp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="74dp"
-                        android:orientation="horizontal"
-                        android:paddingStart="0dp"
-                        android:paddingTop="12dp"
-                        android:paddingEnd="0dp">
+                        android:layout_height="62dp"
+                        android:orientation="horizontal">
 
-                        <Button
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_cancel"
-                            android:layout_width="121dp"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="#54A3EE"
-                            android:text="Cancel" />
-
-                        <View
                             android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <Button
-                            android:id="@+id/btn_save"
-                            android:layout_width="121dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:backgroundTint="#54A3EE"
-                            android:text="Save" />
-                    </LinearLayout>
+                            android:elevation="12dp"
+                            android:text="Cancel"
+                            android:translationZ="12dp" />
 
+                        <Space
+                            android:layout_width="16dp"
+                            android:layout_height="wrap_content" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_save"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="#54A3EE"
+                            android:elevation="12dp"
+                            android:text="Save"
+                            android:translationZ="12dp" />
+                    </LinearLayout>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
