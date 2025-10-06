@@ -1,17 +1,15 @@
 package com.example.meditrack
 
-import NearbySearchRequest
-import NearbySearchResponse
+import GeoapifyPlacesResponse
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface MapsApi {
-    @POST("v1/places:searchNearby")
-    fun searchNearbyPlaces(
-        @Header("X-Goog-Api-Key") apiKey: String,
-        @Header("X-Goog-FieldMask") fieldMask: String = "places.displayName,places.location,places.types,places.formattedAddress",
-        @Body request: NearbySearchRequest
-    ): Call<NearbySearchResponse>
+    @GET("places")
+    fun getNearbyPlaces(
+        @Query("categories") categories: String,
+        @Query("filter") filter: String,
+        @Query("apiKey") apiKey: String
+    ): Call<GeoapifyPlacesResponse>
 }

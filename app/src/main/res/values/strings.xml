@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">MediTrack+</string>
-    <string name="google_api_key">AIzaSyAtSXrgPW0jdM3klVZNtxlzr3CGla7elDk</string>
+    <string name="geoapify_api_key">36f45638b80346b2857a6dcae65da963</string>
     <string name="default_web_client_id">YOUR_WEB_CLIENT_ID_HERE</string>
 </resources>
