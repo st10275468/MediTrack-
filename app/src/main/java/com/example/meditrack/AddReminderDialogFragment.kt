@@ -10,6 +10,8 @@ import com.example.meditrack.R
 import java.text.SimpleDateFormat
 import java.util.*
 import com.google.android.flexbox.FlexboxLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 class AddReminderDialogFragment : DialogFragment() {
 
@@ -52,15 +54,43 @@ class AddReminderDialogFragment : DialogFragment() {
         val btnCancel = view.findViewById<Button>(R.id.btn_cancel)
         val btnSave = view.findViewById<Button>(R.id.btn_save)
 
-        //Demo meds
-        val sampleMedicines = listOf("Paracetamol", "Allecet", "Corenza C" )
-        val adapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_spinner_item,
-            sampleMedicines
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerMedicine.adapter = adapter
+        val user = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            val db = com.google.firebase.firestore.FirebaseFirestore.getInstance()
+            db.collection("users")
+                .document(user.uid)
+                .collection("medicines")
+                .get()
+                .addOnSuccessListener { querySnapshot ->
+                    val medicineList = mutableListOf<String>()
+                    for (doc in querySnapshot.documents) {
+                        val medName = doc.getString("name")
+                        medName?.let { medicineList.add(it) }
+                    }
+
+                    if (medicineList.isEmpty()) {
+                        medicineList.add("No medicines added")
+                    }
+
+                    val adapter = ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        medicineList
+                    )
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    spinnerMedicine.adapter = adapter
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(requireContext(), "Medicines Failed to Load: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            spinnerMedicine.adapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_spinner_item,
+                listOf("Login to see medicines")
+            )
+        }
+
 
         fun showDatePicker(target: EditText) {
             val c = Calendar.getInstance()
