@@ -21,9 +21,9 @@ class MedicineDetailActivity : AppCompatActivity() {
         val btnSave = findViewById<Button>(R.id.btnSaveFirebase)
 
         tvName.text = intent.getStringExtra("medicine_name") ?: "N/A"
-        tvDosage.text = "Dosage: " + (intent.getStringExtra("dosage") ?: "N/A")
-        tvPurpose.text = "Purpose: " + (intent.getStringExtra("purpose") ?: "N/A")
-        tvWarnings.text = "Warnings: " + (intent.getStringExtra("warnings") ?: "N/A")
+        tvDosage.text = (intent.getStringExtra("dosage") ?: "N/A")
+        tvPurpose.text = (intent.getStringExtra("purpose") ?: "N/A")
+        tvWarnings.text = (intent.getStringExtra("warnings") ?: "N/A")
 
         btnBack.setOnClickListener { finish() }
         btnSave.setOnClickListener {
@@ -46,6 +46,7 @@ class MedicineDetailActivity : AppCompatActivity() {
                 .add(medicineMap)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Medicine saved successfully!", Toast.LENGTH_SHORT).show()
+                    finish()
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Failed to save medicine: ${e.message}", Toast.LENGTH_SHORT).show()

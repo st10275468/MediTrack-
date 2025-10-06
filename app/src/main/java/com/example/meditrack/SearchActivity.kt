@@ -47,10 +47,21 @@ class SearchActivity : AppCompatActivity() {
 
         adapter = MedicineAdapter(listOf()) { medicine ->
             val intent = Intent(this, MedicineDetailActivity::class.java)
+
+            fun clean(text: String?): String {
+                return text
+                    ?.replace("Purpose", "", ignoreCase = true)
+                    ?.replace("Dosage", "", ignoreCase = true)
+                    ?.replace("Warnings", "", ignoreCase = true)
+                    ?.trim()
+                    ?: "N/A"
+            }
+
             intent.putExtra("medicine_name", medicine.openfda?.brand_name?.getOrNull(0))
-            intent.putExtra("purpose", medicine.purpose?.joinToString("\n"))
-            intent.putExtra("warnings", medicine.warnings?.joinToString("\n"))
-            intent.putExtra("dosage", medicine.dosage_and_administration?.joinToString("\n"))
+            intent.putExtra("purpose", clean(medicine.purpose?.joinToString("\n")))
+            intent.putExtra("warnings", clean(medicine.warnings?.joinToString("\n")))
+            intent.putExtra("dosage", clean(medicine.dosage_and_administration?.joinToString("\n")))
+
             startActivity(intent)
         }
 
@@ -93,7 +104,7 @@ class SearchActivity : AppCompatActivity() {
 
 
 
-                    adapter.updateMedicines(filteredMedicines) // update RecyclerView
+                    adapter.updateMedicines(filteredMedicines)
                 }
             }
 
