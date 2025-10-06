@@ -1,5 +1,4 @@
 package com.example.meditrack
-
 import GeoapifyPlacesResponse
 import android.Manifest
 import android.content.pm.PackageManager
@@ -11,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.*
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -43,7 +43,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Hide POI and transit labels
         val styleJson = """
             [
               { "featureType": "poi", "elementType": "labels", "stylers": [{ "visibility": "off" }] },
@@ -120,7 +119,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun fetchNearbyPlaces(lat: Double, lng: Double) {
         val apiKey = getString(R.string.geoapify_api_key)
         val categories = "healthcare.hospital,healthcare.pharmacy"
-        val filter = "circle:$lng,$lat,4000" // circle:lon,lat,radius
+        val filter = "circle:$lng,$lat,4000"
 
         Log.d("MapActivity", "Fetching places from Geoapify...")
 
@@ -141,7 +140,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                         val props = feature.properties
                         val coords = feature.geometry.coordinates
                         if (coords.size >= 2) {
-                            val latLng = LatLng(coords[1], coords[0]) // [lon, lat] → [lat, lon]
+                            val latLng = LatLng(coords[1], coords[0])
 
                             val markerColor = when {
                                 props.categories?.contains("pharmacy") == true -> BitmapDescriptorFactory.HUE_BLUE
