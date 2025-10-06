@@ -50,13 +50,17 @@ dependencies {
     implementation(libs.firebase.auth.ktx)
     implementation("com.google.android.gms:play-services-auth:20.6.0")
     implementation(libs.play.services.maps)
+    implementation(libs.androidx.fragment)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.google.android.libraries.places:places:3.3.0")
     implementation(libs.appcompat)
     implementation("com.google.android.flexbox:flexbox:3.0.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 
 
 
