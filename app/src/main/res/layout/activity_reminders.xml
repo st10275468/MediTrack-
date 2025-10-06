@@ -6,32 +6,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0062C1"
-    android:backgroundTint="#54A3EE"
     app:circularflow_radiusInDP="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000000"
-        android:backgroundTint="#0062C1"
+        android:background="#0062C1"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="144dp"
-            android:outlineAmbientShadowColor="#000000"
-            app:cardElevation="8dp"
+            android:layout_width="390dp"
+            android:layout_height="151dp"
+            android:layout_gravity="center"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FDFDFD"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.TopSquareBottomRounded">
 
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="12dp"
+                android:layout_gravity="end|top"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 app:srcCompat="@drawable/ic_settings" />
 
             <ImageView
@@ -49,21 +48,20 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/TabMenu"
-            android:layout_width="403dp"
+            android:layout_width="351dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/tab_border"
-            android:clickable="true"
-            android:elevation="8dp"
-            android:fadeScrollbars="false"
+            android:elevation="4dp"
             app:tabIndicatorColor="#307BC3"
-            app:tabTextColor="#307AC3">
+            app:tabTextColor="#307AC3"
+            app:tabPaddingStart="0dp"
+            app:tabPaddingEnd="12dp">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tbHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:text="Home"
                 android:textAlignment="center" />
 
@@ -71,21 +69,18 @@
                 android:id="@+id/tbSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:text="Search" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tbProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:text="Profile" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tbReminder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:text="Reminders" />
         </com.google.android.material.tabs.TabLayout>
 
@@ -94,30 +89,31 @@
             android:layout_height="20dp" />
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="406dp"
-            android:layout_height="607dp"
+            android:layout_width="346dp"
+            android:layout_height="535dp"
             android:layout_gravity="center"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:outlineAmbientShadowColor="#000000"
             app:cardBackgroundColor="#FDFDFD"
             app:cardCornerRadius="25dp"
-            app:cardElevation="8dp"
-            app:contentPadding="10dp"
-            app:contentPaddingBottom="20dp">
+            app:cardElevation="4dp"
+            app:contentPadding="10dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="587dp"
+                android:layout_width="333dp"
+                android:layout_height="477dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="346dp"
-                    android:layout_height="58dp"
+                    android:layout_width="309dp"
+                    android:layout_height="53dp"
                     android:layout_gravity="center_horizontal"
-                    android:elevation="4dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:elevation="8dp"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
                     app:cardBackgroundColor="#55A4F0"
-                    app:cardCornerRadius="35dp"
+                    app:cardCornerRadius="25dp"
                     app:cardElevation="4dp"
                     app:cardMaxElevation="4dp">
 
@@ -125,32 +121,31 @@
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_marginBottom="1dp"
+                        android:layout_gravity="center|center_vertical"
+                        android:layout_marginLeft="5dp"
                         android:text="Reminders"
                         android:textColor="#FFFFFF"
                         android:textSize="40sp" />
 
                     <ImageView
                         android:id="@+id/imageView6"
-                        android:layout_width="62dp"
-                        android:layout_height="36dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
+                        android:layout_width="56dp"
+                        android:layout_height="49dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginLeft="5dp"
                         app:srcCompat="@drawable/ic_reminder" />
 
                 </androidx.cardview.widget.CardView>
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="15dp" />
+                    android:layout_height="10dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="511dp">
-
-                </androidx.recyclerview.widget.RecyclerView>
+                    android:layout_width="344dp"
+                    android:layout_height="415dp"
+                    android:padding="10dp" />
 
             </LinearLayout>
 
@@ -158,18 +153,16 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
-            android:layout_width="69dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="12dp"
-            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="-70dp"
+            android:layout_marginRight="40dp"
             app:backgroundTint="#54A3EE"
             app:elevation="10dp"
-            app:pressedTranslationZ="12dp"
+            app:pressedTranslationZ="16dp"
             app:srcCompat="@drawable/ic_plus"
-            app:tint="@color/white" />
-
+            app:tint="@android:color/white" />
 
     </LinearLayout>
 
