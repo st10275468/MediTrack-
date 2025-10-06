@@ -1,136 +1,679 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:circularflow_radiusInDP="8dp">
+    android:background="#0062C1"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#0062C1"
-        android:backgroundTint="#0062C1"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="390dp"
+        android:layout_height="151dp"
+        android:layout_gravity="center"
+        android:outlineAmbientShadowColor="#000000"
+        app:cardBackgroundColor="#FDFDFD"
+        app:cardElevation="4dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.TopSquareBottomRounded">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="390dp"
-            android:layout_height="151dp"
-            android:layout_gravity="center"
-            android:outlineAmbientShadowColor="#000000"
-            app:cardBackgroundColor="#FDFDFD"
-            app:cardElevation="4dp"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.TopSquareBottomRounded">
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
-                app:srcCompat="@drawable/ic_settings" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_gravity="center"
-                app:srcCompat="@drawable/ic_meditrack_logo" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/TabMenu"
-            android:layout_width="351dp"
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            app:srcCompat="@drawable/ic_settings" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
             android:layout_gravity="center"
-            android:background="@drawable/tab_border"
-            android:clickable="true"
-            android:elevation="4dp"
-            android:fadeScrollbars="false"
-            app:tabIndicatorColor="#307BC3"
-            app:tabTextColor="#307AC3"
-            app:tabPaddingStart="0dp"
-            app:tabPaddingEnd="12dp">
+            app:srcCompat="@drawable/ic_meditrack_logo" />
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tbHome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="Home"
-                android:textAlignment="center" />
+    </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tbSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="Search" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tbProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="Profile" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tbReminder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:text="Reminders" />
-        </com.google.android.material.tabs.TabLayout>
-
-        <Space
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="349dp"
-            android:layout_height="540dp"
-            android:layout_gravity="center"
-            android:outlineAmbientShadowColor="#000000"
-            app:cardBackgroundColor="#FDFDFD"
-            app:cardCornerRadius="25dp"
-            app:cardElevation="4dp"
-            app:contentPadding="10dp">
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="281dp"
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/TabMenu"
+                android:layout_width="351dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:elevation="8dp"
-                app:cardBackgroundColor="#55A4F0"
-                app:cardCornerRadius="25dp"
-                app:cardElevation="4dp"
-                app:cardMaxElevation="4dp">
+                android:layout_gravity="center"
+                android:background="@drawable/tab_border"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:fadeScrollbars="false"
+                app:tabIndicatorColor="#307BC3"
+                app:tabPaddingEnd="12dp"
+                app:tabPaddingStart="0dp"
+                app:tabTextColor="#307AC3">
 
-                <TextView
-                    android:id="@+id/textView3"
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tbHome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center|center_horizontal"
-                    android:text="Profile"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="40sp" />
+                    android:clickable="true"
+                    android:text="Home"
+                    android:textAlignment="center" />
 
-            </androidx.cardview.widget.CardView>
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tbSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:text="Search" />
 
-        </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tbProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:text="Profile" />
 
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tbReminder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:text="Reminders" />
+            </com.google.android.material.tabs.TabLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="349dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:outlineAmbientShadowColor="#000000"
+                app:cardBackgroundColor="#FDFDFD"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="4dp"
+                app:contentPadding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="281dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:elevation="8dp"
+                        app:cardBackgroundColor="#55A4F0"
+                        app:cardCornerRadius="25dp"
+                        app:cardElevation="4dp"
+                        app:cardMaxElevation="4dp">
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|center_horizontal"
+                            android:text="Profile"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF"
+                            android:textSize="40sp" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#0062C1"
+                        android:backgroundTint="#0062C1"
+                        app:cardCornerRadius="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="5dp"
+                                android:text="Personal Details"
+                                android:textAlignment="center"
+                                android:textColor="#FFFFFF"
+                                android:textSize="24sp" />
+
+                            <View
+                                android:id="@+id/view"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/white" />
+
+                            <TextView
+                                android:id="@+id/textView6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="28dp"
+                                android:layout_marginTop="5dp"
+                                android:text="Full Name:"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="280dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="3dp"
+                                app:boxBackgroundColor="#FFFFFF"
+                                app:boxBackgroundMode="outline"
+                                app:boxCornerRadiusBottomEnd="10dp"
+                                app:boxCornerRadiusBottomStart="10dp"
+                                app:boxCornerRadiusTopEnd="10dp"
+                                app:boxCornerRadiusTopStart="10dp"
+                                app:boxStrokeColor="@color/white"
+                                app:hintAnimationEnabled="false"
+                                app:hintEnabled="false">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etFullName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:hint="Enter Full Name"
+                                    android:inputType="text" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <TextView
+                                android:id="@+id/textView8"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="28dp"
+                                android:layout_marginTop="5dp"
+                                android:text="Age:"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="280dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="3dp"
+                                app:boxBackgroundColor="#FFFFFF"
+                                app:boxBackgroundMode="outline"
+                                app:boxCornerRadiusBottomEnd="10dp"
+                                app:boxCornerRadiusBottomStart="10dp"
+                                app:boxCornerRadiusTopEnd="10dp"
+                                app:boxCornerRadiusTopStart="10dp"
+                                app:boxStrokeColor="@color/white"
+                                app:hintAnimationEnabled="false"
+                                app:hintEnabled="false">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etAge"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:hint="Enter Age"
+                                    android:inputType="number" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <TextView
+                                android:id="@+id/textView9"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="28dp"
+                                android:layout_marginTop="5dp"
+                                android:text="Gender:"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="280dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="3dp"
+                                app:boxBackgroundColor="#FFFFFF"
+                                app:boxBackgroundMode="outline"
+                                app:boxCornerRadiusBottomEnd="10dp"
+                                app:boxCornerRadiusBottomStart="10dp"
+                                app:boxCornerRadiusTopEnd="10dp"
+                                app:boxCornerRadiusTopStart="10dp"
+                                app:boxStrokeColor="@color/white"
+                                app:hintAnimationEnabled="false"
+                                app:hintEnabled="false">
+
+                                <RadioGroup
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbMale"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:backgroundTint="#FDFDFD"
+                                        android:buttonTint="#FFFFFF"
+                                        android:text="Male"
+                                        android:textColor="#FFFEFE"
+                                        android:textSize="16sp"
+                                        app:buttonTint="#FFFFFF" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbFemale"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:backgroundTint="#FDFBFB"
+                                        android:buttonTint="#FFFEFE"
+                                        android:text="Female"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="16sp"
+                                        app:buttonTint="#FFFFFF" />
+
+                                </RadioGroup>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <Button
+                                android:id="@+id/btnSavePersonalDetails"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="1"
+                                android:backgroundTint="#56A5F0"
+                                android:text="Save" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#0062C1"
+                        android:backgroundTint="#0062C1"
+                        app:cardCornerRadius="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="5dp"
+                                android:text="Medical Details"
+                                android:textAlignment="center"
+                                android:textColor="#FFFFFF"
+                                android:textSize="24sp" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="28dp"
+                                android:layout_marginTop="5dp"
+                                android:text="Blood Type:"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="280dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="3dp"
+                                app:boxBackgroundColor="#FFFFFF"
+                                app:boxBackgroundMode="outline"
+                                app:boxCornerRadiusBottomEnd="10dp"
+                                app:boxCornerRadiusBottomStart="10dp"
+                                app:boxCornerRadiusTopEnd="10dp"
+                                app:boxCornerRadiusTopStart="10dp"
+                                app:boxStrokeColor="@color/white"
+                                app:hintAnimationEnabled="false"
+                                app:hintEnabled="false">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etBloodType"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:hint="Enter Blood Type"
+                                    android:inputType="text" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="28dp"
+                                android:layout_marginTop="5dp"
+                                android:text="Allergies:"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="280dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="3dp"
+                                app:boxBackgroundColor="#FFFFFF"
+                                app:boxBackgroundMode="outline"
+                                app:boxCornerRadiusBottomEnd="10dp"
+                                app:boxCornerRadiusBottomStart="10dp"
+                                app:boxCornerRadiusTopEnd="10dp"
+                                app:boxCornerRadiusTopStart="10dp"
+                                app:boxStrokeColor="@color/white"
+                                app:hintAnimationEnabled="false"
+                                app:hintEnabled="false">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etAllergies"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:hint="Enter Allergies"
+                                    android:inputType="text" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="28dp"
+                                android:layout_marginTop="5dp"
+                                android:text="Chronic Conditions:"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="280dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="3dp"
+                                app:boxBackgroundColor="#FFFFFF"
+                                app:boxBackgroundMode="outline"
+                                app:boxCornerRadiusBottomEnd="10dp"
+                                app:boxCornerRadiusBottomStart="10dp"
+                                app:boxCornerRadiusTopEnd="10dp"
+                                app:boxCornerRadiusTopStart="10dp"
+                                app:boxStrokeColor="@color/white"
+                                app:hintAnimationEnabled="false"
+                                app:hintEnabled="false">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etChronicConditions"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:hint="Enter Chronic Conditions"
+                                    android:inputType="text" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <Button
+                                android:id="@+id/btnSaveMedicalDetails"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:backgroundTint="#56A5F0"
+                                android:text="Save" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#0062C1"
+                        android:backgroundTint="#0062C1"
+                        app:cardCornerRadius="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="5dp"
+                                android:text="Medications"
+                                android:textAlignment="center"
+                                android:textColor="#FFFFFF"
+                                android:textSize="24sp" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/white" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="280dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="5dp"
+                                app:boxBackgroundColor="#FFFFFF"
+                                app:boxBackgroundMode="outline"
+                                app:boxCornerRadiusBottomEnd="10dp"
+                                app:boxCornerRadiusBottomStart="10dp"
+                                app:boxCornerRadiusTopEnd="10dp"
+                                app:boxCornerRadiusTopStart="10dp"
+                                app:boxStrokeColor="@color/white"
+                                app:hintAnimationEnabled="false"
+                                app:hintEnabled="false">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etMed1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:hint="Add New"
+                                    android:inputType="text" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="280dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="5dp"
+                                app:boxBackgroundColor="#FFFFFF"
+                                app:boxBackgroundMode="outline"
+                                app:boxCornerRadiusBottomEnd="10dp"
+                                app:boxCornerRadiusBottomStart="10dp"
+                                app:boxCornerRadiusTopEnd="10dp"
+                                app:boxCornerRadiusTopStart="10dp"
+                                app:boxStrokeColor="@color/white"
+                                app:hintAnimationEnabled="false"
+                                app:hintEnabled="false">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etMed2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:hint="Add New"
+                                    android:inputType="text" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="280dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="5dp"
+                                app:boxBackgroundColor="#FFFFFF"
+                                app:boxBackgroundMode="outline"
+                                app:boxCornerRadiusBottomEnd="10dp"
+                                app:boxCornerRadiusBottomStart="10dp"
+                                app:boxCornerRadiusTopEnd="10dp"
+                                app:boxCornerRadiusTopStart="10dp"
+                                app:boxStrokeColor="@color/white"
+                                app:hintAnimationEnabled="false"
+                                app:hintEnabled="false">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etMed3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:hint="Add New"
+                                    android:inputType="text" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="280dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="5dp"
+                                app:boxBackgroundColor="#FFFFFF"
+                                app:boxBackgroundMode="outline"
+                                app:boxCornerRadiusBottomEnd="10dp"
+                                app:boxCornerRadiusBottomStart="10dp"
+                                app:boxCornerRadiusTopEnd="10dp"
+                                app:boxCornerRadiusTopStart="10dp"
+                                app:boxStrokeColor="@color/white"
+                                app:hintAnimationEnabled="false"
+                                app:hintEnabled="false">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etMed4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:hint="Add New"
+                                    android:inputType="text" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <Button
+                                android:id="@+id/btnSaveMedicationDetails"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:backgroundTint="#56A5F0"
+                                android:text="Save" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#0062C1"
+                        android:backgroundTint="#0062C1"
+                        app:cardCornerRadius="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="5dp"
+                                android:text="Notes"
+                                android:textAlignment="center"
+                                android:textColor="#FFFFFF"
+                                android:textSize="24sp" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/white" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="280dp"
+                                android:layout_height="200dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="5dp"
+                                app:boxBackgroundColor="#FFFFFF"
+                                app:boxBackgroundMode="outline"
+                                app:boxCornerRadiusBottomEnd="10dp"
+                                app:boxCornerRadiusBottomStart="10dp"
+                                app:boxCornerRadiusTopEnd="10dp"
+                                app:boxCornerRadiusTopStart="10dp"
+                                app:boxStrokeColor="@color/white"
+                                app:hintAnimationEnabled="false"
+                                app:hintEnabled="false">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etNotes"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="top|start"
+                                    android:hint="Add Notes Here"
+                                    android:inputType="textMultiLine"
+                                    android:textCursorDrawable="@drawable/cursor_blue" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <Button
+                                android:id="@+id/btnSaveNoteDetails"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:backgroundTint="#56A5F0"
+                                android:text="Save" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
