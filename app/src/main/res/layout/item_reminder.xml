@@ -4,13 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    android:clipChildren="false"
+    android:clipToOutline="false"
+    android:clipToPadding="false"
     android:padding="16dp"
+    app:cardBackgroundColor="#0062C1"
     app:cardCornerRadius="16dp"
-    app:cardElevation="8dp">
+    app:cardElevation="12dp"
+    app:contentPadding="10dp"
+    app:layout_gravity="clip_horizontal">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="275dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clipChildren="false"
+        android:clipToOutline="false"
+        android:clipToPadding="false"
         android:orientation="vertical">
 
         <TextView
@@ -18,33 +28,58 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medicine"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
 
         <TextView
             android:id="@+id/tvDosage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dosage" />
+            android:text="Dosage"
+            android:textColor="@color/white" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
 
         <TextView
             android:id="@+id/tvTimes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Times" />
+            android:text="Times"
+            android:textColor="@color/white" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
 
         <TextView
             android:id="@+id/tvNextDose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next Dose" />
+            android:text="Next Dose"
+            android:textColor="@color/white" />
 
-        <Button
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_gravity="end"
-            android:text="Delete" />
+            android:layout_marginRight="5dp"
+            android:text="Delete"
+            android:textColor="@android:color/white"
+            app:backgroundTint="#55A4F0"
+            app:elevation="8dp"
+            app:rippleColor="#99FFFFFF" />
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

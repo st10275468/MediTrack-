@@ -74,16 +74,27 @@ class ReminderActivity : AppCompatActivity() {
     }
 
     private fun deleteReminder(reminder: Reminder) {
-        val user = FirebaseAuth.getInstance().currentUser ?: return
-        val db = FirebaseFirestore.getInstance()
-        db.collection("users").document(user.uid).collection("reminders")
-            .whereEqualTo("medicine", reminder.medicine)
-            .get()
-            .addOnSuccessListener { snapshot ->
-                for (doc in snapshot) {
-                    doc.reference.delete()
-                }
-                fetchReminders()
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("Confirm Delete")
+            .setMessage("Are you sure you want to delete ${reminder.medicine}?")
+            .setPositiveButton("Delete") { dialog, _ ->
+                val user = FirebaseAuth.getInstance().currentUser ?: return@setPositiveButton
+                val db = FirebaseFirestore.getInstance()
+                db.collection("users").document(user.uid).collection("reminders")
+                    .whereEqualTo("medicine", reminder.medicine)
+                    .get()
+                    .addOnSuccessListener { snapshot ->
+                        for (doc in snapshot) {
+                            doc.reference.delete()
+                        }
+                        fetchReminders()
+                    }
+                dialog.dismiss()
             }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
+
 }

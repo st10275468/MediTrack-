@@ -91,22 +91,22 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="346dp"
             android:layout_height="535dp"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal|top"
             app:cardBackgroundColor="#FDFDFD"
             app:cardCornerRadius="25dp"
             app:cardElevation="4dp"
-            app:contentPadding="10dp">
+            app:contentPaddingTop="13dp">
 
             <LinearLayout
-                android:layout_width="333dp"
-                android:layout_height="477dp"
-                android:gravity="center"
+                android:layout_width="335dp"
+                android:layout_height="484dp"
+                android:layout_gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="309dp"
+                    android:layout_width="321dp"
                     android:layout_height="53dp"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_gravity="center|center_horizontal"
                     android:clipChildren="false"
                     android:clipToPadding="false"
                     android:elevation="8dp"
@@ -137,14 +137,11 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
-                    android:layout_width="344dp"
-                    android:layout_height="415dp"
+                    android:layout_width="340dp"
+                    android:layout_height="431dp"
+                    android:layout_gravity="center"
                     android:padding="10dp" />
 
             </LinearLayout>

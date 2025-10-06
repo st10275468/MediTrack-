@@ -108,24 +108,35 @@ class AddReminderDialogFragment : DialogFragment() {
             ).show()
         }
 
-        fun showTimePicker(onPicked: (String) -> Unit) {
+        fun showTimePicker(onPicked: (String, String) -> Unit) {
             val c = Calendar.getInstance()
             val hour = c.get(Calendar.HOUR_OF_DAY)
             val minute = c.get(Calendar.MINUTE)
             TimePickerDialog(requireContext(), { _, h, m ->
-                val cal = Calendar.getInstance().apply { set(Calendar.HOUR_OF_DAY, h); set(Calendar.MINUTE, m) }
-                val fmt = SimpleDateFormat("hh:mm a", Locale.getDefault())
-                onPicked(fmt.format(cal.time))
+                val cal = Calendar.getInstance().apply {
+                    set(Calendar.HOUR_OF_DAY, h)
+                    set(Calendar.MINUTE, m)
+                }
+
+                val fmt24 = SimpleDateFormat("HH:mm", Locale.getDefault())
+                val fmt12 = SimpleDateFormat("hh:mm a", Locale.getDefault())
+
+                val timeForStorage = fmt24.format(cal.time)
+                val timeForDisplay = fmt12.format(cal.time)
+
+                onPicked(timeForDisplay, timeForStorage)
+
             }, hour, minute, false).show()
         }
+
 
         etStart.setOnClickListener { showDatePicker(etStart) }
         etEnd.setOnClickListener { showDatePicker(etEnd) }
 
         btnAddTime.setOnClickListener {
-            showTimePicker { timeString ->
+            showTimePicker { displayTime, storageTime ->
                 val chip = TextView(requireContext()).apply {
-                    text = timeString
+                    text = displayTime
                     setTextColor(Color.WHITE)
                     textSize = 16f
                     setPadding(32, 16, 32, 16)
@@ -137,10 +148,14 @@ class AddReminderDialogFragment : DialogFragment() {
                     )
                     params.setMargins(24, 8, 24, 8)
                     layoutParams = params
+
+                    tag = storageTime
                 }
                 containerTimes.addView(chip)
             }
         }
+
+
 
 
         btnCancel.setOnClickListener { dismiss() }
@@ -164,7 +179,7 @@ class AddReminderDialogFragment : DialogFragment() {
             val times = mutableListOf<String>()
             for (i in 0 until containerTimes.childCount) {
                 val tv = containerTimes.getChildAt(i) as? TextView
-                tv?.text?.toString()?.let { times.add(it) }
+                tv?.tag?.toString()?.let { times.add(it) }  // use 24-hour format
             }
 
             val frequency = when (rgFrequency.checkedRadioButtonId) {
