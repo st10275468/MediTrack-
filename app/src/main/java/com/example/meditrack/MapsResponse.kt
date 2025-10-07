@@ -16,7 +16,7 @@ data class Feature(
 )
 
 data class Geometry(
-    val coordinates: List<Double> // [lon, lat]
+    val coordinates: List<Double>
 )
 
 data class Properties(
