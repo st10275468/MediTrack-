@@ -85,7 +85,7 @@ class ReminderActivity : AppCompatActivity() {
 
     }
 
-    private fun fetchReminders() {
+    fun fetchReminders() {
         val user = FirebaseAuth.getInstance().currentUser ?: return
         val db = FirebaseFirestore.getInstance()
         db.collection("users").document(user.uid).collection("reminders")
