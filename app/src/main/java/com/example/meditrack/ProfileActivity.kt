@@ -68,7 +68,8 @@ class ProfileActivity : AppCompatActivity() {
         val btnSaveMedicationDetails = findViewById<Button>(R.id.btnSaveMedicationDetails)
         val btnSaveNotesDetails = findViewById<Button>(R.id.btnSaveNoteDetails)
 
-        if (user != null) {
+        fun loadMedicalProfileData(){
+            if (user == null) return
             val userProfileRef = db.collection("users").document(user.uid).collection("medicalProfile")
 
             // Pre-fills personal detail hints with Firestore data if available
@@ -115,6 +116,9 @@ class ProfileActivity : AppCompatActivity() {
                 }
         }
 
+        // Loads medical profile initially
+        loadMedicalProfileData()
+
         // Saves personal details to firestore
         btnSavePersonalDetails.setOnClickListener {
             if (user == null) {
@@ -144,6 +148,9 @@ class ProfileActivity : AppCompatActivity() {
                 .set(personalDetailsMap)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Personal details saved successfully!", Toast.LENGTH_SHORT).show()
+                    fullNameInput.text.clear()
+                    ageInput.text.clear()
+                    loadMedicalProfileData()
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Error saving details: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -174,6 +181,10 @@ class ProfileActivity : AppCompatActivity() {
                 .set(medicalDetailsMap)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Medical details saved successfully!", Toast.LENGTH_SHORT).show()
+                    bloodTypeInput.text.clear()
+                    allergiesInput.text.clear()
+                    chronicConditionsInput.text.clear()
+                    loadMedicalProfileData()
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Error saving details: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -206,6 +217,11 @@ class ProfileActivity : AppCompatActivity() {
                 .set(medicationDetailsMap)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Medication details saved successfully!", Toast.LENGTH_SHORT).show()
+                    medInput1.text.clear()
+                    medInput2.text.clear()
+                    medInput3.text.clear()
+                    medInput4.text.clear()
+                    loadMedicalProfileData()
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Error saving medications: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -232,6 +248,8 @@ class ProfileActivity : AppCompatActivity() {
                 .set(notesDetailsMap)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Notes saved successfully!", Toast.LENGTH_SHORT).show()
+                    notesInput.text.clear()
+                    loadMedicalProfileData()
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Error saving notes: ${e.message}", Toast.LENGTH_SHORT).show()
