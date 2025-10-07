@@ -143,12 +143,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="10dp" />
 
-                <SearchView
-                    android:id="@+id/svSearch"
-                    android:layout_width="match_parent"
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="282dp"
                     android:layout_height="wrap_content"
-                    android:queryHint="Search Medicine"
-                    android:layout_marginTop="10dp" />
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="4dp">
+
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/svSearch"
+                        android:layout_width="271dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:iconifiedByDefault="false"
+                        android:queryHint="Search Medicine" />
+                </com.google.android.material.card.MaterialCardView>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvMedicines"

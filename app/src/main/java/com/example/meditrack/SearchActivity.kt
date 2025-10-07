@@ -68,7 +68,11 @@ class SearchActivity : AppCompatActivity() {
         }
 
         val rvMedicines = findViewById<RecyclerView>(R.id.rvMedicines)
-        val svSearch = findViewById<SearchView>(R.id.svSearch)
+
+        val svSearch = findViewById<androidx.appcompat.widget.SearchView>(R.id.svSearch)
+        svSearch.isIconified = false
+        svSearch.isFocusable = true
+        svSearch.isFocusableInTouchMode = true
 
         adapter = MedicineAdapter(listOf()) { medicine ->
             val intent = Intent(this, MedicineDetailActivity::class.java)
@@ -93,7 +97,7 @@ class SearchActivity : AppCompatActivity() {
         rvMedicines.adapter = adapter
         rvMedicines.layoutManager = LinearLayoutManager(this)
 
-        svSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        svSearch.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let { searchMedicine(it) }
                 return false
