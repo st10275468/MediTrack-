@@ -4,10 +4,19 @@ import android.content.Context
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 
+/**
+ * FireStoreHelper.kt
+ *
+ * Provides a function to save a user's email, optional name, and account creation timestamp.
+ *
+ * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
+ */
 object FireStoreHelper {
 
+    // Firestore instance
     private val db = FirebaseFirestore.getInstance()
 
+    // Saves user data to Firestore users collection
     fun saveUserToFirestore(context: Context, uid: String, email: String, name: String? = null) {
         val userMap = hashMapOf(
             "email" to email,
