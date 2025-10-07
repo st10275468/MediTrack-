@@ -14,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
  *
  * This activity allows users to register and save their user to FirebaseAuth and Firestore
  *
+ * Reference:
  * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
  */
 class RegisterActivity : AppCompatActivity() {

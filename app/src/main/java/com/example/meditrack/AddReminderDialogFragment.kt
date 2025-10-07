@@ -178,7 +178,7 @@ class AddReminderDialogFragment : DialogFragment() {
             val times = mutableListOf<String>()
             for (i in 0 until containerTimes.childCount) {
                 val tv = containerTimes.getChildAt(i) as? TextView
-                tv?.tag?.toString()?.let { times.add(it) }  // use 24-hour format
+                tv?.tag?.toString()?.let { times.add(it) }
             }
 
             val frequency = when (rgFrequency.checkedRadioButtonId) {
@@ -187,6 +187,8 @@ class AddReminderDialogFragment : DialogFragment() {
                 R.id.rb_once -> "Once Off"
                 else -> ""
             }
+
+            if (!validateInput(medicine, start, dosage, times, frequency)) return@setOnClickListener
 
             val reminderMap = hashMapOf(
                 "medicine" to medicine,
@@ -212,7 +214,44 @@ class AddReminderDialogFragment : DialogFragment() {
                 .addOnFailureListener { e ->
                     Toast.makeText(requireContext(), "Failed to save: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
+
         }
 
+
+    }
+
+    private fun validateInput(
+        medicine: String,
+        start: String,
+        dosage: String,
+        times: List<String>,
+        frequency: String
+    ): Boolean {
+        if (medicine.isEmpty() || medicine == "No medicines added" || medicine == "Login to see medicines") {
+            Toast.makeText(requireContext(), "Please select a medicine", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (start.isEmpty()) {
+            Toast.makeText(requireContext(), "Please select a start date", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (dosage.isEmpty()) {
+            Toast.makeText(requireContext(), "Please enter a dosage", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (times.isEmpty()) {
+            Toast.makeText(requireContext(), "Please add at least one time", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (frequency.isEmpty()) {
+            Toast.makeText(requireContext(), "Please select a frequency", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        return true
     }
 }
