@@ -84,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful){
-                Toast.makeText(this, "Login succesful", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
 
                 startActivity(Intent(this, DashboardActivity::class.java))
                 finish()
