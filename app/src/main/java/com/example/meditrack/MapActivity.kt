@@ -25,6 +25,15 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * MapActivity.kt
+ *
+ * Activity to display map using Google Maps API
+ * Displays markers for nearby hospitals, doctors and pharmacies using Geoapify API
+ *
+ * Reference:
+ * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
+ */
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
@@ -35,8 +44,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
 
+        // Initialize location services
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
+        // Setup map fragment
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -66,9 +77,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    /**
+     * Method checks permissions and adds styling when map is ready
+     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        // Hides normal map labels
         val styleJson = """
             [
               { "featureType": "poi", "elementType": "labels", "stylers": [{ "visibility": "off" }] },
@@ -77,6 +92,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         """.trimIndent()
         mMap.setMapStyle(MapStyleOptions(styleJson))
 
+        // Request for location permission
         if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -92,16 +108,21 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    /**
+     * Method to enable the user location and fethc nearby locations
+     */
     private fun enableLocationAndFetchPlaces() {
         try {
             mMap.isMyLocationEnabled = true
 
+            // Find last known location
             fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
                 if (location != null) {
                     val currentLatLng = LatLng(location.latitude, location.longitude)
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 14f))
                     fetchNearbyPlaces(location.latitude, location.longitude)
                 } else {
+                    // Request new location if no location found
                     requestFreshLocation()
                 }
             }.addOnFailureListener {
@@ -112,6 +133,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    /**
+     * Method to request fresh location
+     */
     private fun requestFreshLocation() {
         try {
             val locationRequest = LocationRequest.create().apply {
@@ -132,6 +156,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
 
+            // Requests location from device
             fusedLocationClient.requestLocationUpdates(
                 locationRequest,
                 locationCallback,
@@ -142,6 +167,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    /**
+     * Method to fetch nearby places using Geoapify API
+     */
     private fun fetchNearbyPlaces(lat: Double, lng: Double) {
         val apiKey = getString(R.string.geoapify_api_key)
         val categories = "healthcare.hospital,healthcare.pharmacy"
@@ -162,6 +190,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                     val results = response.body()?.features ?: emptyList()
                     Log.d("MapActivity", "Places found: ${results.size}")
 
+                    // Add marker for each location
                     for (feature in results) {
                         val props = feature.properties
                         val coords = feature.geometry.coordinates
@@ -196,6 +225,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         })
     }
 
+    /**
+     * Method to handle location permission request result
+     */
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,

@@ -2,6 +2,7 @@ import com.example.meditrack.MedicineApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+// Retrofit instance for use with FDA API
 object RetrofitInstance {
     val api: MedicineApi by lazy {
         Retrofit.Builder()

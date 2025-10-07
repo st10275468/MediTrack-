@@ -12,6 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import retrofit2.Call
 
+/**
+ * SearchActivity.kt
+ *
+ * This activity allows users to search for medications using FDA API
+ *
+ * Reference:
+ * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
+ */
 class SearchActivity : AppCompatActivity() {
 
     private lateinit var adapter: MedicineAdapter
@@ -67,16 +75,18 @@ class SearchActivity : AppCompatActivity() {
             popup.show()
         }
 
+        // Setup recycler and search views
         val rvMedicines = findViewById<RecyclerView>(R.id.rvMedicines)
-
         val svSearch = findViewById<androidx.appcompat.widget.SearchView>(R.id.svSearch)
         svSearch.isIconified = false
         svSearch.isFocusable = true
         svSearch.isFocusableInTouchMode = true
 
+        // Initialize medicine adapter
         adapter = MedicineAdapter(listOf()) { medicine ->
             val intent = Intent(this, MedicineDetailActivity::class.java)
 
+            // format text
             fun clean(text: String?): String {
                 return text
                     ?.replace("Purpose", "", ignoreCase = true)
@@ -86,6 +96,7 @@ class SearchActivity : AppCompatActivity() {
                     ?: "N/A"
             }
 
+            // passes data to medicine details activity
             intent.putExtra("medicine_name", medicine.openfda?.brand_name?.getOrNull(0))
             intent.putExtra("purpose", clean(medicine.purpose?.joinToString("\n")))
             intent.putExtra("warnings", clean(medicine.warnings?.joinToString("\n")))
@@ -117,13 +128,20 @@ class SearchActivity : AppCompatActivity() {
 
 
     }
+
+    /**
+     * Uses user input to search for medication
+     */
     private fun searchMedicine(userInput: String) {
          val query = "openfda.brand_name:$userInput*"
+
+        // Make API call
          RetrofitInstance.api.searchMedicine(query).enqueue(object : retrofit2.Callback<MedicineResponse> {
             override fun onResponse(call: retrofit2.Call<MedicineResponse>, response: retrofit2.Response<MedicineResponse>) {
                 if (response.isSuccessful) {
                     val medicines = response.body()?.results ?: emptyList()
 
+                    // Filter
                     val filteredMedicines = medicines.filter { med ->
                         val types = med.openfda?.product_type ?: emptyList()
                         val isDrug = types.any { it.contains("DRUG", ignoreCase = true) }
