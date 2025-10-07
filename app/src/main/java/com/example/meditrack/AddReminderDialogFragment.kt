@@ -7,6 +7,7 @@ import android.view.*
 import android.widget.*
 import androidx.fragment.app.DialogFragment
 import com.example.meditrack.R
+import com.example.meditrack.ReminderActivity
 import java.text.SimpleDateFormat
 import java.util.*
 import com.google.android.flexbox.FlexboxLayout
@@ -206,6 +207,8 @@ class AddReminderDialogFragment : DialogFragment() {
                 .add(reminderMap)
                 .addOnSuccessListener {
                     Toast.makeText(requireContext(), "Reminder saved!", Toast.LENGTH_SHORT).show()
+                    val reminderActivity = activity as? ReminderActivity
+                    reminderActivity?.fetchReminders()
                     dismiss()
                 }
                 .addOnFailureListener { e ->
