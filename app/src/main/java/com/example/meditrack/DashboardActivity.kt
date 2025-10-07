@@ -2,6 +2,8 @@ package com.example.meditrack
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -67,6 +69,30 @@ class DashboardActivity : AppCompatActivity() {
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
+
+
+        //Settings Menu functionality
+        val settingsIcon = findViewById<ImageView>(R.id.imageView4)
+        settingsIcon.setOnClickListener {
+            val popup = PopupMenu(this, settingsIcon)
+            popup.menuInflater.inflate(R.menu.menu_settings, popup.menu)
+
+            popup.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+
+                    R.id.menu_theme -> {
+                        Toast.makeText(this, "Theme changed", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    R.id.menu_language -> {
+                        Toast.makeText(this, "Feature not implemented yet", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popup.show()
+        }
 
 
     }

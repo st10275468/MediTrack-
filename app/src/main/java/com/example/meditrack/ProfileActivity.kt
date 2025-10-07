@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +17,7 @@ import com.google.android.material.tabs.TabLayout
  * This activity allows users to view and edit their own personal medical profile.
  * Saves all data to firestore.
  *
- *
+ * Reference:
  * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
  */
 class ProfileActivity : AppCompatActivity() {
@@ -49,6 +51,29 @@ class ProfileActivity : AppCompatActivity() {
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
+
+        //Settings Menu functionality
+        val settingsIcon = findViewById<ImageView>(R.id.imageView4)
+        settingsIcon.setOnClickListener {
+            val popup = PopupMenu(this, settingsIcon)
+            popup.menuInflater.inflate(R.menu.menu_settings, popup.menu)
+
+            popup.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+
+                    R.id.menu_theme -> {
+                        Toast.makeText(this, "Theme changed", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    R.id.menu_language -> {
+                        Toast.makeText(this, "Feature not implemented yet", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popup.show()
+        }
 
         // Input fields
         val fullNameInput = findViewById<EditText>(R.id.etFullName)
