@@ -15,15 +15,27 @@ import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
+/**
+ * ReminderActivity.kt
+ *
+ * This activity displays the user with a list of current medication reminders and allows them to delete and add new reminders.
+ *
+ * Reference:
+ * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
+ */
 class ReminderActivity : AppCompatActivity() {
 
+    // Adapter to bind to recycler view
     private lateinit var adapter: ReminderAdapter
+
+    // List of reminders
     private val reminders = mutableListOf<Reminder>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reminders)
 
+        // Setup recycler view
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = ReminderAdapter(reminders) { reminder ->
@@ -31,6 +43,8 @@ class ReminderActivity : AppCompatActivity() {
         }
 
         recyclerView.adapter = adapter
+
+        // Fetch reminders from firestore
         fetchReminders()
 
         //Tab Menu functionality
@@ -78,6 +92,7 @@ class ReminderActivity : AppCompatActivity() {
             popup.show()
         }
 
+        // Button for new reminder
         val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
         fab.setOnClickListener {
             AddReminderDialogFragment().show(supportFragmentManager, "add_reminder")
@@ -85,6 +100,9 @@ class ReminderActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Method to fetch reminders for current user
+     */
     fun fetchReminders() {
         val user = FirebaseAuth.getInstance().currentUser ?: return
         val db = FirebaseFirestore.getInstance()
@@ -99,6 +117,9 @@ class ReminderActivity : AppCompatActivity() {
             }
     }
 
+    /**
+     * Method to delete reminder from firestore
+     */
     private fun deleteReminder(reminder: Reminder) {
         androidx.appcompat.app.AlertDialog.Builder(this)
             .setTitle("Confirm Delete")

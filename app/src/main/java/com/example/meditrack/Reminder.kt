@@ -1,5 +1,6 @@
 package com.example.meditrack
 
+// Data class for reminder
 data class Reminder(
     val medicine: String = "",
     val dosage: String = "",

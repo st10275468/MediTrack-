@@ -11,11 +11,22 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
+/**
+ * ReminderAdapter.kt
+ *
+ * Adapter to display reminders in recyclerview
+ *
+ * Reference:
+ * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
+ */
 class ReminderAdapter(
     private val reminders: MutableList<Reminder>,
     private val onDeleteClick: (Reminder) -> Unit
 ) : RecyclerView.Adapter<ReminderAdapter.ReminderViewHolder>() {
 
+    /**
+     * View holder to reference specific components for each reminder
+     */
     inner class ReminderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvMedicine: TextView = itemView.findViewById(R.id.tvMedicine)
         val tvDosage: TextView = itemView.findViewById(R.id.tvDosage)
@@ -47,6 +58,10 @@ class ReminderAdapter(
             onDeleteClick(reminder)
         }
     }
+
+    /**
+     * Method to calculate next dose datetime
+     */
     private fun getNextDoseDisplay(reminder: Reminder): String {
         val nextTime = reminder.times.firstOrNull() ?: return "No dose"
         val sdfTime = SimpleDateFormat("HH:mm", Locale.getDefault())
