@@ -40,8 +40,11 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(intent)
         }
         cvScanner.setOnClickListener {
-            val intent = Intent(this, ScannerActivity::class.java)
-            startActivity(intent)
+            Toast.makeText(this, "Feature coming in next update", Toast.LENGTH_SHORT).show()
+        }
+
+        cvSettings.setOnClickListener {
+            Toast.makeText(this, "Feature coming in next update", Toast.LENGTH_SHORT).show()
         }
 
 
