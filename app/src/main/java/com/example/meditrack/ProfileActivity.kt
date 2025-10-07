@@ -42,18 +42,62 @@ class ProfileActivity : AppCompatActivity() {
 
         val fullNameInput = findViewById<EditText>(R.id.etFullName)
         val ageInput = findViewById<EditText>(R.id.etAge)
-        val btnSavePersonalDetails = findViewById<Button>(R.id.btnSavePersonalDetails)
         val bloodTypeInput = findViewById<EditText>(R.id.etBloodType)
         val allergiesInput = findViewById<EditText>(R.id.etAllergies)
         val chronicConditionsInput = findViewById<EditText>(R.id.etChronicConditions)
-        val btnSaveMedicalDetails = findViewById<Button>(R.id.btnSaveMedicalDetails)
         val medInput1 = findViewById<EditText>(R.id.etMed1)
         val medInput2 = findViewById<EditText>(R.id.etMed2)
         val medInput3 = findViewById<EditText>(R.id.etMed3)
         val medInput4 = findViewById<EditText>(R.id.etMed4)
-        val btnSaveMedicationDetails = findViewById<Button>(R.id.btnSaveMedicationDetails)
         val notesInput = findViewById<EditText>(R.id.etNotes)
+
+        val btnSavePersonalDetails = findViewById<Button>(R.id.btnSavePersonalDetails)
+        val btnSaveMedicalDetails = findViewById<Button>(R.id.btnSaveMedicalDetails)
+        val btnSaveMedicationDetails = findViewById<Button>(R.id.btnSaveMedicationDetails)
         val btnSaveNotesDetails = findViewById<Button>(R.id.btnSaveNoteDetails)
+
+        if (user != null) {
+            val userProfileRef = db.collection("users").document(user.uid).collection("medicalProfile")
+
+            userProfileRef.document("personalDetails").get()
+                .addOnSuccessListener { doc ->
+                    if (doc.exists()) {
+                        doc.getString("Name")?.takeIf { it.isNotBlank() }?.let { fullNameInput.hint = it }
+                        doc.getString("Age")?.takeIf { it.isNotBlank() }?.let { ageInput.hint = it }
+                        val genderGroup = findViewById<RadioGroup>(R.id.rbGender)
+                        when (doc.getString("Gender")) {
+                            "Male" -> genderGroup.check(R.id.rbMale)
+                            "Female" -> genderGroup.check(R.id.rbFemale)
+                        }
+                    }
+                }
+
+            userProfileRef.document("medicalDetails").get()
+                .addOnSuccessListener { doc ->
+                    if (doc.exists()) {
+                        doc.getString("bloodType")?.takeIf { it.isNotBlank() }?.let { bloodTypeInput.hint = it }
+                        doc.getString("allergies")?.takeIf { it.isNotBlank() }?.let { allergiesInput.hint = it }
+                        doc.getString("chronicConditions")?.takeIf { it.isNotBlank() }?.let { chronicConditionsInput.hint = it }
+                    }
+                }
+
+            userProfileRef.document("medicationDetails").get()
+                .addOnSuccessListener { doc ->
+                    if (doc.exists()) {
+                        doc.getString("medication1")?.takeIf { it.isNotBlank() }?.let { medInput1.hint = it }
+                        doc.getString("medication2")?.takeIf { it.isNotBlank() }?.let { medInput2.hint = it }
+                        doc.getString("medication3")?.takeIf { it.isNotBlank() }?.let { medInput3.hint = it }
+                        doc.getString("medication4")?.takeIf { it.isNotBlank() }?.let { medInput4.hint = it }
+                    }
+                }
+
+            userProfileRef.document("notesDetails").get()
+                .addOnSuccessListener { doc ->
+                    if (doc.exists()) {
+                        doc.getString("notes")?.takeIf { it.isNotBlank() }?.let { notesInput.hint = it }
+                    }
+                }
+        }
 
         btnSavePersonalDetails.setOnClickListener {
             if (user == null) {
