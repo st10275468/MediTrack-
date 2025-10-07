@@ -9,6 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
  *
  * Provides a function to save a user's email, optional name, and account creation timestamp.
  *
+ * Reference:
  * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
  */
 object FireStoreHelper {

@@ -4,18 +4,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.PopupMenu
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import com.google.android.material.tabs.TabItem
 import com.google.android.material.tabs.TabLayout
 
+/**
+ * DashboardActivity.kt
+ *
+ * This activity is the home dashboard once a user is logged in and displays links to all the features
+ *
+ * Reference:
+ * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
+ */
 class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
+        // Set feature buttons
         val cvSearch = findViewById<CardView>(R.id.cvSearch)
         val cvReminder = findViewById<CardView>(R.id.cvReminder)
         val cvProfile = findViewById<CardView>(R.id.cvProfile)
@@ -23,6 +30,7 @@ class DashboardActivity : AppCompatActivity() {
         val cvScanner = findViewById<CardView>(R.id.cvScanner)
         val cvSettings = findViewById<CardView>(R.id.cvSettings)
 
+        // Button listeners for features
         cvSearch.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)

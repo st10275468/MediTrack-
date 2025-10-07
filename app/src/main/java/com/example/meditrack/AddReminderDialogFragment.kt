@@ -12,6 +12,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 import com.google.android.flexbox.FlexboxLayout
 
+/**
+ * AddReminderDialogFragment.kt
+ *
+ * This activity represents the dialog fragment that shows up when creating a new reminder
+ *
+ * Reference:
+ * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
+ */
 class AddReminderDialogFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +31,7 @@ class AddReminderDialogFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Makes background transparent
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         return inflater.inflate(R.layout.dialog_add_reminder, container, false)
     }
@@ -30,12 +39,14 @@ class AddReminderDialogFragment : DialogFragment() {
     override fun onStart() {
         super.onStart()
         dialog?.window?.setLayout(
+            // Makes fullscreen
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT
         )
         dialog?.window?.setDimAmount(0.6f)
         dialog?.setCanceledOnTouchOutside(true)
 
+        // Animation
         val card = dialog?.findViewById<View>(R.id.card_root)
         card?.alpha = 0f
         card?.scaleX = 0.9f
@@ -45,6 +56,8 @@ class AddReminderDialogFragment : DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        // Input fields and buttons for fragment
         val etStart = view.findViewById<EditText>(R.id.et_start_date)
         val etEnd = view.findViewById<EditText>(R.id.et_end_date)
         val btnAddTime = view.findViewById<Button>(R.id.btn_add_time)
@@ -53,8 +66,10 @@ class AddReminderDialogFragment : DialogFragment() {
         val btnCancel = view.findViewById<Button>(R.id.btn_cancel)
         val btnSave = view.findViewById<Button>(R.id.btn_save)
 
+        // Retrieves current user
         val user = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
         if (user != null) {
+            // Retrieves users medicines
             val db = com.google.firebase.firestore.FirebaseFirestore.getInstance()
             db.collection("users")
                 .document(user.uid)
@@ -62,6 +77,7 @@ class AddReminderDialogFragment : DialogFragment() {
                 .get()
                 .addOnSuccessListener { querySnapshot ->
                     val medicineList = mutableListOf<String>()
+                    // Adds medicine to dropdown
                     for (doc in querySnapshot.documents) {
                         val medName = doc.getString("name")
                         medName?.let { medicineList.add(it) }
@@ -90,7 +106,7 @@ class AddReminderDialogFragment : DialogFragment() {
             )
         }
 
-
+        // Displays date picker and handles result
         fun showDatePicker(target: EditText) {
             val c = Calendar.getInstance()
             DatePickerDialog(requireContext(),
@@ -107,6 +123,7 @@ class AddReminderDialogFragment : DialogFragment() {
             ).show()
         }
 
+        // Display time picker and handles result
         fun showTimePicker(onPicked: (String, String) -> Unit) {
             val c = Calendar.getInstance()
             val hour = c.get(Calendar.HOUR_OF_DAY)
@@ -132,6 +149,7 @@ class AddReminderDialogFragment : DialogFragment() {
         etStart.setOnClickListener { showDatePicker(etStart) }
         etEnd.setOnClickListener { showDatePicker(etEnd) }
 
+        // Button to add new time
         btnAddTime.setOnClickListener {
             showTimePicker { displayTime, storageTime ->
                 val chip = TextView(requireContext()).apply {
@@ -156,9 +174,10 @@ class AddReminderDialogFragment : DialogFragment() {
 
 
 
-
+        // Button to cancel reminder adding
         btnCancel.setOnClickListener { dismiss() }
 
+        // Button to save reminder
         btnSave.setOnClickListener {
             val user = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
             if (user == null) {
@@ -166,21 +185,23 @@ class AddReminderDialogFragment : DialogFragment() {
                 return@setOnClickListener
             }
 
+            // Retrieve user inputs
             val spinnerMedicine = view.findViewById<Spinner>(R.id.spinner_medicine)
             val etDosage = view.findViewById<EditText>(R.id.et_dosage)
             val rgFrequency = view.findViewById<RadioGroup>(R.id.rg_frequency)
-
             val medicine = spinnerMedicine.selectedItem?.toString() ?: ""
             val start = etStart.text.toString()
             val end = etEnd.text.toString()
             val dosage = etDosage.text.toString()
 
+            // Retrieve all times
             val times = mutableListOf<String>()
             for (i in 0 until containerTimes.childCount) {
                 val tv = containerTimes.getChildAt(i) as? TextView
                 tv?.tag?.toString()?.let { times.add(it) }
             }
 
+            // Retrieve frequency of reminder
             val frequency = when (rgFrequency.checkedRadioButtonId) {
                 R.id.rb_daily -> "Daily"
                 R.id.rb_weekly -> "Weekly"
@@ -188,8 +209,10 @@ class AddReminderDialogFragment : DialogFragment() {
                 else -> ""
             }
 
+            // Input validation
             if (!validateInput(medicine, start, dosage, times, frequency)) return@setOnClickListener
 
+            // Object to save in Firestore
             val reminderMap = hashMapOf(
                 "medicine" to medicine,
                 "startDate" to start,
@@ -200,6 +223,7 @@ class AddReminderDialogFragment : DialogFragment() {
                 "createdAt" to System.currentTimeMillis()
             )
 
+            // Save reminder to Firestore - reminders collection
             val db = com.google.firebase.firestore.FirebaseFirestore.getInstance()
             db.collection("users")
                 .document(user.uid)
@@ -208,6 +232,7 @@ class AddReminderDialogFragment : DialogFragment() {
                 .addOnSuccessListener {
                     Toast.makeText(requireContext(), "Reminder saved!", Toast.LENGTH_SHORT).show()
                     val reminderActivity = activity as? ReminderActivity
+                    // Refresh reminders page on success
                     reminderActivity?.fetchReminders()
                     dismiss()
                 }
@@ -220,6 +245,9 @@ class AddReminderDialogFragment : DialogFragment() {
 
     }
 
+    /**
+     * Method to validate all user input fields
+     */
     private fun validateInput(
         medicine: String,
         start: String,

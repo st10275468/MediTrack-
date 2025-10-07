@@ -22,7 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore
  *
  * This activity allows users to login using FirebaseAuth email and password, and Google sign in options
  *
- *
+ * Reference:
  * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
  */
 class LoginActivity : AppCompatActivity() {
