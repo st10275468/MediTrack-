@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "934514090425-ll4kdelag1h3a94gskl3u8rt1ggt87gh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.meditrack",
+            "certificate_hash": "18bf80ad89d72999126cd44bdd214e93ec766aa5"
+          }
+        },
+        {
           "client_id": "934514090425-ptpnco36ai7ppalbsjq6kvisd4bo4ql4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
