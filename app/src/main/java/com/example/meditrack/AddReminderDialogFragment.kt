@@ -10,8 +10,6 @@ import com.example.meditrack.R
 import java.text.SimpleDateFormat
 import java.util.*
 import com.google.android.flexbox.FlexboxLayout
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
 
 class AddReminderDialogFragment : DialogFragment() {
 

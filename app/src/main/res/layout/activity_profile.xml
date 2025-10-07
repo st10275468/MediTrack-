@@ -263,6 +263,7 @@
                                 app:hintEnabled="false">
 
                                 <RadioGroup
+                                    android:id="@+id/rbGender"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:orientation="horizontal">
