@@ -7,7 +7,6 @@ import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.material.tabs.TabLayout
 
 class ProfileActivity : AppCompatActivity() {
