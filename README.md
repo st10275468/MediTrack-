@@ -36,7 +36,7 @@
 
 - **Version Control**: Application code maintained in Git repository, using version commits.
 - **Documentation**: Readme file added to Git repository for easy display.
-- **GitHub Actions**:
+- **GitHub Actions**: GitHub Actions was used to create a workflow for generating debug and release apks. Workflow passed and produced three artifacts - APK DEBUG - APK RELEASE - AND APK BUNDLE. Workflow can be found and run in the actions tab of this repository.
 
 ---
 
