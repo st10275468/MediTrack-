@@ -9,15 +9,26 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
 
+/**
+ * ProfileActivity.kt
+ *
+ * This activity allows users to view and edit their own personal medical profile.
+ * Saves all data to firestore.
+ *
+ *
+ * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
+ */
 class ProfileActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+        // Retrieves logged in user
         val user = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
         val db = com.google.firebase.firestore.FirebaseFirestore.getInstance()
+
+        // Setup for top tab menu
         val tabMenu = findViewById<TabLayout>(R.id.TabMenu)
         tabMenu.getTabAt(2)?.select()
         tabMenu.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
@@ -39,6 +50,7 @@ class ProfileActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
+        // Input fields
         val fullNameInput = findViewById<EditText>(R.id.etFullName)
         val ageInput = findViewById<EditText>(R.id.etAge)
         val bloodTypeInput = findViewById<EditText>(R.id.etBloodType)
@@ -50,6 +62,7 @@ class ProfileActivity : AppCompatActivity() {
         val medInput4 = findViewById<EditText>(R.id.etMed4)
         val notesInput = findViewById<EditText>(R.id.etNotes)
 
+        // Save buttons
         val btnSavePersonalDetails = findViewById<Button>(R.id.btnSavePersonalDetails)
         val btnSaveMedicalDetails = findViewById<Button>(R.id.btnSaveMedicalDetails)
         val btnSaveMedicationDetails = findViewById<Button>(R.id.btnSaveMedicationDetails)
@@ -58,6 +71,7 @@ class ProfileActivity : AppCompatActivity() {
         if (user != null) {
             val userProfileRef = db.collection("users").document(user.uid).collection("medicalProfile")
 
+            // Pre-fills personal detail hints with Firestore data if available
             userProfileRef.document("personalDetails").get()
                 .addOnSuccessListener { doc ->
                     if (doc.exists()) {
@@ -71,6 +85,7 @@ class ProfileActivity : AppCompatActivity() {
                     }
                 }
 
+            // Pre-fills medical detail hints with Firestore data if available
             userProfileRef.document("medicalDetails").get()
                 .addOnSuccessListener { doc ->
                     if (doc.exists()) {
@@ -80,6 +95,7 @@ class ProfileActivity : AppCompatActivity() {
                     }
                 }
 
+            // Pre-fills medication detail hints with Firestore data if available
             userProfileRef.document("medicationDetails").get()
                 .addOnSuccessListener { doc ->
                     if (doc.exists()) {
@@ -90,6 +106,7 @@ class ProfileActivity : AppCompatActivity() {
                     }
                 }
 
+            // Pre-fills notes hint with Firestore data if available
             userProfileRef.document("notesDetails").get()
                 .addOnSuccessListener { doc ->
                     if (doc.exists()) {
@@ -98,6 +115,7 @@ class ProfileActivity : AppCompatActivity() {
                 }
         }
 
+        // Saves personal details to firestore
         btnSavePersonalDetails.setOnClickListener {
             if (user == null) {
                 Toast.makeText(this, "You must be logged in!", Toast.LENGTH_SHORT).show()
@@ -132,6 +150,7 @@ class ProfileActivity : AppCompatActivity() {
                 }
         }
 
+        // Saves medical details to firestore
         btnSaveMedicalDetails.setOnClickListener {
             if (user == null) {
                 Toast.makeText(this, "You must be logged in!", Toast.LENGTH_SHORT).show()
@@ -161,6 +180,7 @@ class ProfileActivity : AppCompatActivity() {
                 }
         }
 
+        // Saves Medication details to firestore
         btnSaveMedicationDetails.setOnClickListener {
             if (user == null) {
                 Toast.makeText(this, "You must be logged in!", Toast.LENGTH_SHORT).show()
@@ -192,6 +212,7 @@ class ProfileActivity : AppCompatActivity() {
                 }
         }
 
+        // Saves note details to firestore
         btnSaveNotesDetails.setOnClickListener {
             if (user == null) {
                 Toast.makeText(this, "You must be logged in!", Toast.LENGTH_SHORT).show()
