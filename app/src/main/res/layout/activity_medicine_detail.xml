@@ -14,7 +14,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="728dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             app:cardCornerRadius="25dp"
@@ -23,7 +23,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="699dp"
+                android:layout_height="713dp"
                 android:orientation="vertical">
 
                 <com.google.android.material.card.MaterialCardView
@@ -49,7 +49,7 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="129dp"
+                    android:layout_height="120dp"
                     android:layout_marginBottom="12dp"
                     app:cardBackgroundColor="#0061BF"
                     app:cardCornerRadius="20dp"
@@ -126,15 +126,14 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_height="200dp"
                     app:cardBackgroundColor="#0061BF"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="4dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="200dp"
                         android:orientation="vertical"
                         android:padding="12dp">
 
@@ -163,7 +162,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="106dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
