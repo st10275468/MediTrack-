@@ -78,10 +78,6 @@ class ReminderActivity : AppCompatActivity() {
             popup.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
 
-                    R.id.menu_theme -> {
-                        Toast.makeText(this, "Feature not implemented yet", Toast.LENGTH_SHORT).show()
-                        true
-                    }
                     R.id.menu_language -> {
                         Toast.makeText(this, "Feature not implemented yet", Toast.LENGTH_SHORT).show()
                         true
