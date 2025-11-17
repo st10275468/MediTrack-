@@ -71,6 +71,28 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
+
+        val savedUID = SecureStorage.getUID(this)
+        if(savedUID != null && SecureStorage.biometricsEnabled(this)){
+            if(BiometricHelper.canAuthenticate(this)){
+                BiometricHelper.showBiometricPrompt(
+                    context = this,
+                    title = "Login With Biometrics",
+                    subtitle = "Authenticate to continue",
+                    onSuccess = {
+                        Toast.makeText(this, "Biometric Login Successful", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, DashboardActivity::class.java))
+                        finish()
+                    },
+                            onFailure = {
+                                Toast.makeText(this, "Biometric Authentication Failed", Toast.LENGTH_SHORT).show()
+                            }
+                        )
+
+
+            }
+        }
+
     }
 
     /**
@@ -84,6 +106,13 @@ class LoginActivity : AppCompatActivity() {
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful){
+                val uid = auth.currentUser?.uid
+                uid?.let { SecureStorage.saveUID(this, it) }
+
+                if(BiometricHelper.canAuthenticate(this)){
+                    SecureStorage.enableBiometrics(this)
+                }
+
                 Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
 
                 startActivity(Intent(this, DashboardActivity::class.java))
@@ -117,6 +146,15 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithCredential(credential).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 val user = auth.currentUser
+                val uid = user?.uid
+                uid?.let { SecureStorage.saveUID(this, it) }
+
+                if(BiometricHelper.canAuthenticate(this)){
+                    SecureStorage.enableBiometrics(this)
+                }
+
+
+
                 Toast.makeText(this, "Signed in with Google", Toast.LENGTH_SHORT).show()
 
                 // Save user to Firestore
