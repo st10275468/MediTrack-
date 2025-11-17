@@ -1,5 +1,6 @@
 package com.example.meditrack
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.google.android.material.tabs.TabLayout
+import java.util.Locale
 
 /**
  * DashboardActivity.kt
@@ -18,6 +20,10 @@ import com.google.android.material.tabs.TabLayout
  * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
  */
 class DashboardActivity : AppCompatActivity() {
+    override fun attachBaseContext(newBase: Context){
+        super.attachBaseContext(LocaleHelper.applyLocale(newBase))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
@@ -92,7 +98,17 @@ class DashboardActivity : AppCompatActivity() {
                 when (item.itemId) {
 
                     R.id.menu_language -> {
-                        Toast.makeText(this, "Feature not implemented yet", Toast.LENGTH_SHORT).show()
+                        val languagePopup = PopupMenu(this, settingsIcon)
+                        languagePopup.menu.add("English")
+                        languagePopup.menu.add("Afrikaans")
+
+                        languagePopup.setOnMenuItemClickListener { langItem ->
+                            val code = if (langItem.title == "English") "en" else "af"
+                            LocaleHelper.setLocale(this, code)
+                            LocaleHelper.refreshActivity(this)
+                            true
+                        }
+                        languagePopup.show()
                         true
                     }
                     else -> false

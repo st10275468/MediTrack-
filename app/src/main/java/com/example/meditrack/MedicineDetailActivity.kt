@@ -1,5 +1,6 @@
 package com.example.meditrack
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -16,6 +17,9 @@ import com.google.firebase.auth.FirebaseAuth
  * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
  */
 class MedicineDetailActivity : AppCompatActivity() {
+    override fun attachBaseContext(newBase: Context){
+        super.attachBaseContext(LocaleHelper.applyLocale(newBase))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

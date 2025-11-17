@@ -1,6 +1,7 @@
 package com.example.meditrack
 import GeoapifyPlacesResponse
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -40,6 +41,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val LOCATION_PERMISSION_REQUEST = 1001
 
+    override fun attachBaseContext(newBase: Context){
+        super.attachBaseContext(LocaleHelper.applyLocale(newBase))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
@@ -54,7 +59,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
         //Settings Menu functionality
-        val settingsIcon = findViewById<ImageView>(R.id.imageViewSettings)
+        val settingsIcon = findViewById<ImageView>(R.id.imageView4)
         settingsIcon.setOnClickListener {
             val popup = PopupMenu(this, settingsIcon)
             popup.menuInflater.inflate(R.menu.menu_settings, popup.menu)
@@ -63,7 +68,17 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 when (item.itemId) {
 
                     R.id.menu_language -> {
-                        Toast.makeText(this, "Feature not implemented yet", Toast.LENGTH_SHORT).show()
+                        val languagePopup = PopupMenu(this, settingsIcon)
+                        languagePopup.menu.add("English")
+                        languagePopup.menu.add("Afrikaans")
+
+                        languagePopup.setOnMenuItemClickListener { langItem ->
+                            val code = if (langItem.title == "English") "en" else "af"
+                            LocaleHelper.setLocale(this, code)
+                            LocaleHelper.refreshActivity(this)
+                            true
+                        }
+                        languagePopup.show()
                         true
                     }
                     else -> false

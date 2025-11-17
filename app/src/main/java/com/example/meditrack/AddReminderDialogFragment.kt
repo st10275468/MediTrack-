@@ -1,11 +1,13 @@
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.DialogFragment
+import com.example.meditrack.LocaleHelper
 import com.example.meditrack.R
 import com.example.meditrack.ReminderActivity
 import java.text.SimpleDateFormat
@@ -21,6 +23,10 @@ import com.google.android.flexbox.FlexboxLayout
  * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
  */
 class AddReminderDialogFragment : DialogFragment() {
+
+    override fun onAttach(context: Context){
+        super.onAttach(LocaleHelper.applyLocale(context))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
