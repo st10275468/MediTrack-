@@ -153,8 +153,6 @@ class LoginActivity : AppCompatActivity() {
                     SecureStorage.enableBiometrics(this)
                 }
 
-
-
                 Toast.makeText(this, "Signed in with Google", Toast.LENGTH_SHORT).show()
 
                 // Save user to Firestore

@@ -27,7 +27,7 @@
             android:id="@+id/tvMedicine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medicine"
+            android:text="@string/medicine"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -40,7 +40,7 @@
             android:id="@+id/tvDosage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dosage"
+            android:text="@string/dosage"
             android:textColor="@color/white" />
 
         <Space
@@ -51,7 +51,7 @@
             android:id="@+id/tvTimes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Times"
+            android:text="@string/Times"
             android:textColor="@color/white" />
 
         <Space
@@ -62,7 +62,7 @@
             android:id="@+id/tvNextDose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next Dose"
+            android:text="@string/nextDose"
             android:textColor="@color/white" />
 
         <Space
@@ -75,7 +75,7 @@
             android:layout_height="40dp"
             android:layout_gravity="end"
             android:layout_marginRight="5dp"
-            android:text="Delete"
+            android:text="@string/delete"
             android:textColor="@android:color/white"
             app:backgroundTint="#55A4F0"
             app:elevation="8dp"

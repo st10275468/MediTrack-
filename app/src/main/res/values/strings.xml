@@ -2,4 +2,71 @@
     <string name="app_name">MediTrack+</string>
     <string name="geoapify_api_key">36f45638b80346b2857a6dcae65da963</string>
     <string name="default_web_client_id">YOUR_WEB_CLIENT_ID_HERE</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="registerAccount">Register</string>
+    <string name="login">Login</string>
+    <string name="loginSSO">Login with SSO</string>
+    <string name="register">Don\'t have an account? Register</string>
+
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
+    <string name="reminders">Reminders</string>
+    <string name="welcome">Welcome to MediTrack+</string>
+    <string name="features">Find our features below</string>
+    <string name="medicineSearch">Medicine Search</string>
+    <string name="pillReminder">Pill Reminder</string>
+    <string name="medicalProfile">Medical Profile</string>
+    <string name="pharmacyMap">Pharmacy Map</string>
+    <string name="barcodeScanner">Barcode Scanner</string>
+    <string name="account">Account</string>
+
+    <string name="facilities">Nearby Medical Facilities</string>
+    <string name="medName">Medicine Name</string>
+    <string name="medPurpose">Purpose:</string>
+    <string name="medUse">Directions of use:</string>
+    <string name="medWarning">Warnings:</string>
+    <string name="cancel">Cancel</string>
+    <string name="addMedicine">Add Medicine</string>
+
+    <string name="personalDetails">Personal Details</string>
+    <string name="fullName">Full Name:</string>
+    <string name="entFullName">Enter Full Name</string>
+    <string name="age">Age:</string>
+    <string name="entAge">Enter Age</string>
+    <string name="gender">Gender:</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="save">Save</string>
+    <string name="medicalDetails">Medical Details</string>
+    <string name="blood">Blood Type:</string>
+    <string name="entBlood">Enter Blood Type</string>
+    <string name="allergies">Allergies:</string>
+    <string name="entAllergies">Enter Allergies</string>
+    <string name="condition">Chronic Conditions:</string>
+    <string name="entCondition">Enter Chronic Conditions</string>
+    <string name="medications">Medications</string>
+    <string name="addNew">Add New</string>
+    <string name="notes">Notes</string>
+    <string name="addNotes">Add Notes Here</string>
+    <string name="searchMedicine">Search Medicine</string>
+
+    <string name="createReminder">Create Reminder</string>
+    <string name="startDate">Start Date</string>
+    <string name="endDate">End Date (optional)</string>
+    <string name="daily">Daily</string>
+    <string name="weekly">Weekly</string>
+    <string name="onceOff">Once Off</string>
+    <string name="Times">Times</string>
+    <string name="addTime">+ Add Time</string>
+    <string name="dosageHint">Dosage e.g. 2 Tablets or 50ml</string>
+
+    <string name="medicine">Medicine</string>
+    <string name="dosage">Dosage</string>
+    <string name="nextDose">Next Dose</string>
+    <string name="delete">Delete</string>
+
+    <string name="language">Language</string>
 </resources>

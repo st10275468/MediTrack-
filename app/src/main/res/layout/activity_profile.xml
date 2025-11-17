@@ -68,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:text="Home"
+                    android:text="@string/home"
                     android:textAlignment="center" />
 
                 <com.google.android.material.tabs.TabItem
@@ -76,21 +76,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:text="Search" />
+                    android:text="@string/search" />
 
                 <com.google.android.material.tabs.TabItem
                     android:id="@+id/tbProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:text="Profile" />
+                    android:text="@string/profile" />
 
                 <com.google.android.material.tabs.TabItem
                     android:id="@+id/tbReminder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:text="Reminders" />
+                    android:text="@string/reminders" />
             </com.google.android.material.tabs.TabLayout>
 
             <Space
@@ -129,7 +129,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|center_horizontal"
-                            android:text="Profile"
+                            android:text="@string/profile"
                             android:textAlignment="center"
                             android:textColor="#FFFFFF"
                             android:textSize="40sp" />
@@ -158,7 +158,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="5dp"
-                                android:text="Personal Details"
+                                android:text="@string/personalDetails"
                                 android:textAlignment="center"
                                 android:textColor="#FFFFFF"
                                 android:textSize="24sp" />
@@ -175,7 +175,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="28dp"
                                 android:layout_marginTop="5dp"
-                                android:text="Full Name:"
+                                android:text="@string/fullName"
                                 android:textColor="@color/white"
                                 android:textSize="16dp" />
 
@@ -198,7 +198,7 @@
                                     android:id="@+id/etFullName"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:hint="Enter Full Name"
+                                    android:hint="@string/entFullName"
                                     android:inputType="text" />
 
                             </com.google.android.material.textfield.TextInputLayout>
@@ -209,7 +209,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="28dp"
                                 android:layout_marginTop="5dp"
-                                android:text="Age:"
+                                android:text="@string/age"
                                 android:textColor="@color/white"
                                 android:textSize="16dp" />
 
@@ -232,7 +232,7 @@
                                     android:id="@+id/etAge"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:hint="Enter Age"
+                                    android:hint="@string/entAge"
                                     android:inputType="number" />
 
                             </com.google.android.material.textfield.TextInputLayout>
@@ -243,7 +243,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="28dp"
                                 android:layout_marginTop="5dp"
-                                android:text="Gender:"
+                                android:text="@string/gender"
                                 android:textColor="@color/white"
                                 android:textSize="16dp" />
 
@@ -275,7 +275,7 @@
                                         android:layout_weight="1"
                                         android:backgroundTint="#FDFDFD"
                                         android:buttonTint="#FFFFFF"
-                                        android:text="Male"
+                                        android:text="@string/male"
                                         android:textColor="#FFFEFE"
                                         android:textSize="16sp"
                                         app:buttonTint="#FFFFFF" />
@@ -287,7 +287,7 @@
                                         android:layout_weight="1"
                                         android:backgroundTint="#FDFBFB"
                                         android:buttonTint="#FFFEFE"
-                                        android:text="Female"
+                                        android:text="@string/female"
                                         android:textColor="#FFFFFF"
                                         android:textSize="16sp"
                                         app:buttonTint="#FFFFFF" />
@@ -304,7 +304,7 @@
                                 android:layout_marginBottom="5dp"
                                 android:layout_weight="1"
                                 android:backgroundTint="#56A5F0"
-                                android:text="Save" />
+                                android:text="@string/save" />
 
                         </LinearLayout>
 
@@ -331,7 +331,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="5dp"
-                                android:text="Medical Details"
+                                android:text="@string/medicalDetails"
                                 android:textAlignment="center"
                                 android:textColor="#FFFFFF"
                                 android:textSize="24sp" />
@@ -346,7 +346,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="28dp"
                                 android:layout_marginTop="5dp"
-                                android:text="Blood Type:"
+                                android:text="@string/blood"
                                 android:textColor="@color/white"
                                 android:textSize="16dp" />
 
@@ -369,7 +369,7 @@
                                     android:id="@+id/etBloodType"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:hint="Enter Blood Type"
+                                    android:hint="@string/entBlood"
                                     android:inputType="text" />
 
                             </com.google.android.material.textfield.TextInputLayout>
@@ -379,7 +379,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="28dp"
                                 android:layout_marginTop="5dp"
-                                android:text="Allergies:"
+                                android:text="@string/allergies"
                                 android:textColor="@color/white"
                                 android:textSize="16dp" />
 
@@ -402,7 +402,7 @@
                                     android:id="@+id/etAllergies"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:hint="Enter Allergies"
+                                    android:hint="@string/entAllergies"
                                     android:inputType="text" />
 
                             </com.google.android.material.textfield.TextInputLayout>
@@ -412,7 +412,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="28dp"
                                 android:layout_marginTop="5dp"
-                                android:text="Chronic Conditions:"
+                                android:text="@string/condition"
                                 android:textColor="@color/white"
                                 android:textSize="16dp" />
 
@@ -435,7 +435,7 @@
                                     android:id="@+id/etChronicConditions"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:hint="Enter Chronic Conditions"
+                                    android:hint="@string/entCondition"
                                     android:inputType="text" />
 
                             </com.google.android.material.textfield.TextInputLayout>
@@ -448,7 +448,7 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:backgroundTint="#56A5F0"
-                                android:text="Save" />
+                                android:text="@string/save" />
 
                         </LinearLayout>
 
@@ -475,7 +475,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="5dp"
-                                android:text="Medications"
+                                android:text="@string/medications"
                                 android:textAlignment="center"
                                 android:textColor="#FFFFFF"
                                 android:textSize="24sp" />
@@ -504,7 +504,7 @@
                                     android:id="@+id/etMed1"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:hint="Add New"
+                                    android:hint="@string/addNew"
                                     android:inputType="text" />
 
                             </com.google.android.material.textfield.TextInputLayout>
@@ -528,7 +528,7 @@
                                     android:id="@+id/etMed2"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:hint="Add New"
+                                    android:hint="@string/addNew"
                                     android:inputType="text" />
 
                             </com.google.android.material.textfield.TextInputLayout>
@@ -552,7 +552,7 @@
                                     android:id="@+id/etMed3"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:hint="Add New"
+                                    android:hint="@string/addNew"
                                     android:inputType="text" />
 
                             </com.google.android.material.textfield.TextInputLayout>
@@ -576,7 +576,7 @@
                                     android:id="@+id/etMed4"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:hint="Add New"
+                                    android:hint="@string/addNew"
                                     android:inputType="text" />
 
                             </com.google.android.material.textfield.TextInputLayout>
@@ -589,7 +589,7 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:backgroundTint="#56A5F0"
-                                android:text="Save" />
+                                android:text="@string/save" />
 
                         </LinearLayout>
 
@@ -616,7 +616,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="5dp"
-                                android:text="Notes"
+                                android:text="@string/notes"
                                 android:textAlignment="center"
                                 android:textColor="#FFFFFF"
                                 android:textSize="24sp" />
@@ -646,7 +646,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:gravity="top|start"
-                                    android:hint="Add Notes Here"
+                                    android:hint="@string/addNotes"
                                     android:inputType="textMultiLine"
                                     android:textCursorDrawable="@drawable/cursor_blue" />
 
@@ -660,7 +660,7 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:backgroundTint="#56A5F0"
-                                android:text="Save" />
+                                android:text="@string/save" />
 
                         </LinearLayout>
 

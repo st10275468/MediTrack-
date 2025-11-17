@@ -62,26 +62,26 @@
                 android:id="@+id/tbHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Home"
+                android:text="@string/home"
                 android:textAlignment="center" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tbSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search" />
+                android:text="@string/search" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tbProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profile" />
+                android:text="@string/profile" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tbReminder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reminders" />
+                android:text="@string/reminders" />
         </com.google.android.material.tabs.TabLayout>
 
         <Space
@@ -123,7 +123,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|center_vertical"
                         android:layout_marginLeft="5dp"
-                        android:text="Reminders"
+                        android:text="@string/reminders"
                         android:textColor="#FFFFFF"
                         android:textSize="40sp" />
 

@@ -62,7 +62,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="Create Reminder"
+                            android:text="@string/createReminder"
                             android:textColor="#FFFFFF"
                             android:textSize="32sp" />
 
@@ -87,7 +87,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="false"
-                        android:hint="Start Date"
+                        android:hint="@string/startDate"
                         android:padding="10dp"
                         android:textColor="@color/black" />
 
@@ -100,7 +100,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="false"
-                        android:hint="End Date (optional)"
+                        android:hint="@string/endDate"
                         android:padding="10dp"
                         android:textColor="@color/black" />
 
@@ -118,21 +118,21 @@
                             android:id="@+id/rb_daily"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Daily" />
+                            android:text="@string/daily" />
 
                         <RadioButton
                             android:id="@+id/rb_weekly"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:text="Weekly" />
+                            android:text="@string/weekly" />
 
                         <RadioButton
                             android:id="@+id/rb_once"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:text="Once Off" />
+                            android:text="@string/onceOff" />
                     </RadioGroup>
 
                     <Space
@@ -142,7 +142,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Times"
+                        android:text="@string/Times"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -176,7 +176,7 @@
                         android:layout_marginTop="8dp"
                         android:backgroundTint="#54A3EE"
                         android:elevation="12dp"
-                        android:text="+ Add Time"
+                        android:text="@string/addTime"
                         android:textColor="@android:color/white"
                         android:translationZ="12dp" />
 
@@ -188,7 +188,7 @@
                         android:id="@+id/et_dosage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Dosage e.g. 2 Tablets or 50ml"
+                        android:hint="@string/dosageHint"
                         android:paddingTop="5dp"
                         android:textColor="@color/black" />
 
@@ -208,7 +208,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="#54A3EE"
                             android:elevation="12dp"
-                            android:text="Cancel"
+                            android:text="@string/cancel"
                             android:translationZ="12dp" />
 
                         <Space
@@ -222,7 +222,7 @@
                             android:layout_weight="1"
                             android:backgroundTint="#54A3EE"
                             android:elevation="12dp"
-                            android:text="Save"
+                            android:text="@string/save"
                             android:translationZ="12dp" />
                     </LinearLayout>
 
