@@ -52,6 +52,7 @@
     <string name="notes">Notas</string>
     <string name="addNotes">Voeg Notas Hierby</string>
     <string name="searchMedicine">Soek Medisyne</string>
+    <string name="scanner">Skandeerder</string>
 
     <string name="createReminder">Skep Herinnering</string>
     <string name="startDate">Begindatum</string>

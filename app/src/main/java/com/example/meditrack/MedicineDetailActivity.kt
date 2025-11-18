@@ -18,6 +18,7 @@ import org.w3c.dom.Text
  * Reference:
  * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
  */
+
 class MedicineDetailActivity : AppCompatActivity() {
 
     private lateinit var tvName: TextView
@@ -43,12 +44,13 @@ class MedicineDetailActivity : AppCompatActivity() {
         btnBack = findViewById(R.id.btnBack)
         btnSave = findViewById(R.id.btnSaveFirebase)
 
+        //Retrieving medication data if barcode is scanned
         val scannedBarcode = intent.getStringExtra("BARCODE")
         if (!scannedBarcode.isNullOrEmpty()){
             fetchMedicineByBarcode(scannedBarcode)
         }
         else{
-            // Pass medicine details
+            //Setting fields to N/A if fields are not found
             tvName.text = intent.getStringExtra("medicine_name") ?: "N/A"
             tvDosage.text = (intent.getStringExtra("dosage") ?: "N/A")
             tvPurpose.text = (intent.getStringExtra("purpose") ?: "N/A")
@@ -89,13 +91,15 @@ class MedicineDetailActivity : AppCompatActivity() {
                 }
         }
     }
-    
+
+    //Method uses barcode number to retrieve medications that match from the API
     private fun fetchMedicineByBarcode(barcode: String){
 
+        //Calling a method to change the barcode number into the correct format
         val ndcCode = convertBarcodeToNDC(barcode)
-
         val query = "openfda.product_ndc:$ndcCode"
-        
+
+        //Api request
         RetrofitInstance.api.searchMedicineNDC(query).enqueue(object : retrofit2.Callback<MedicineResponse> {
             override fun onResponse(call : retrofit2.Call<MedicineResponse>, response: retrofit2.Response<MedicineResponse>){
                 if (response.isSuccessful){
@@ -103,7 +107,7 @@ class MedicineDetailActivity : AppCompatActivity() {
                     val medicine = response.body()?.results?.firstOrNull()
 
                     if(medicine != null){
-
+                        //Method to clear fields
                         fun clean(text: List<String>?): String {
                             return text?.joinToString("\n")
                                 ?.replace("Purpose", "", ignoreCase = true)
@@ -112,13 +116,14 @@ class MedicineDetailActivity : AppCompatActivity() {
                                 ?.trim()
                                 ?: "N/A"
                         }
-
+                        //Populating the fields with the medication data retrieved
                         tvName.text = medicine.openfda?.brand_name?.getOrNull(0) ?: "N/A"
                         tvDosage.text = clean(medicine.dosage_and_administration)
                         tvPurpose.text = clean(medicine.purpose)
                         tvWarnings.text = clean(medicine.warnings)
                     }
                     else{
+                        //If no medication is found
                         tvName.text = "Medicine not found"
                         tvDosage.text = "N/A"
                         tvPurpose.text = "N/A"
@@ -137,6 +142,7 @@ class MedicineDetailActivity : AppCompatActivity() {
         })
     }
 
+    //Method to convert the barcode number into the correct format
     fun convertBarcodeToNDC(barcode: String): String{
         if(barcode.length != 12){
             return barcode
