@@ -47,6 +47,16 @@
 - Added Scheduled notifications for pill reminders.
 - Added biometric authentication option. 
 
+---
+
 ## Video Demonstration
 
 - 
+
+---
+
+## GitHub Repository
+
+-
+
+---
