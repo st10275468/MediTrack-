@@ -1,5 +1,6 @@
 package com.example.meditrack
 
+import RetrofitInstance
 import android.content.Context
 import android.os.Bundle
 import android.widget.Button
@@ -7,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import org.w3c.dom.Text
 
 /**
  * MedicineDetailActivity.kt
@@ -17,6 +19,14 @@ import com.google.firebase.auth.FirebaseAuth
  * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
  */
 class MedicineDetailActivity : AppCompatActivity() {
+
+    private lateinit var tvName: TextView
+    private lateinit var tvDosage: TextView
+    private lateinit var tvPurpose: TextView
+    private lateinit var tvWarnings: TextView
+    private lateinit var btnBack: Button
+    private lateinit var btnSave: Button
+
     override fun attachBaseContext(newBase: Context){
         super.attachBaseContext(LocaleHelper.applyLocale(newBase))
     }
@@ -26,18 +36,25 @@ class MedicineDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_medicine_detail)
 
         // UI components
-        val tvName = findViewById<TextView>(R.id.tvName)
-        val tvDosage = findViewById<TextView>(R.id.tvDosage)
-        val tvPurpose = findViewById<TextView>(R.id.tvPurpose)
-        val tvWarnings = findViewById<TextView>(R.id.tvWarnings)
-        val btnBack = findViewById<Button>(R.id.btnBack)
-        val btnSave = findViewById<Button>(R.id.btnSaveFirebase)
+        tvName = findViewById(R.id.tvName)
+        tvDosage = findViewById(R.id.tvDosage)
+        tvPurpose = findViewById(R.id.tvPurpose)
+        tvWarnings = findViewById(R.id.tvWarnings)
+        btnBack = findViewById(R.id.btnBack)
+        btnSave = findViewById(R.id.btnSaveFirebase)
 
-        // Pass medicine details
-        tvName.text = intent.getStringExtra("medicine_name") ?: "N/A"
-        tvDosage.text = (intent.getStringExtra("dosage") ?: "N/A")
-        tvPurpose.text = (intent.getStringExtra("purpose") ?: "N/A")
-        tvWarnings.text = (intent.getStringExtra("warnings") ?: "N/A")
+        val scannedBarcode = intent.getStringExtra("BARCODE")
+        if (!scannedBarcode.isNullOrEmpty()){
+            fetchMedicineByBarcode(scannedBarcode)
+        }
+        else{
+            // Pass medicine details
+            tvName.text = intent.getStringExtra("medicine_name") ?: "N/A"
+            tvDosage.text = (intent.getStringExtra("dosage") ?: "N/A")
+            tvPurpose.text = (intent.getStringExtra("purpose") ?: "N/A")
+            tvWarnings.text = (intent.getStringExtra("warnings") ?: "N/A")
+
+        }
 
         // Back button
         btnBack.setOnClickListener { finish() }
@@ -71,5 +88,49 @@ class MedicineDetailActivity : AppCompatActivity() {
                     Toast.makeText(this, "Failed to save medicine: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
         }
+    }
+    
+    private fun fetchMedicineByBarcode(barcode: String){
+        val query = "openfda.product_ndc:$barcode*"
+        
+        RetrofitInstance.api.searchMedicine(query).enqueue(object : retrofit2.Callback<MedicineResponse> {
+            override fun onResponse(call : retrofit2.Call<MedicineResponse>, response: retrofit2.Response<MedicineResponse>){
+                if (response.isSuccessful){
+
+                    val medicine = response.body()?.results?.firstOrNull()
+
+                    if(medicine != null){
+
+                        fun clean(text: List<String>?): String {
+                            return text?.joinToString("\n")
+                                ?.replace("Purpose", "", ignoreCase = true)
+                                ?.replace("Dosage", "", ignoreCase = true)
+                                ?.replace("Warnings", "", ignoreCase = true)
+                                ?.trim()
+                                ?: "N/A"
+                        }
+
+                        tvName.text = medicine.openfda?.brand_name?.getOrNull(0) ?: "N/A"
+                        tvDosage.text = clean(medicine.dosage_and_administration)
+                        tvPurpose.text = clean(medicine.purpose)
+                        tvWarnings.text = clean(medicine.warnings)
+                    }
+                    else{
+                        tvName.text = "Medicine not found"
+                        tvDosage.text = "N/A"
+                        tvPurpose.text = "N/A"
+                        tvWarnings.text = "N/A"
+                    }
+                }
+                else{
+                    Toast.makeText(this@MedicineDetailActivity, "Failed to retrieve medicine info", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+            override fun onFailure(call: retrofit2.Call<MedicineResponse>, t: Throwable){
+                Toast.makeText(this@MedicineDetailActivity, "API Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }
