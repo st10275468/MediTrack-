@@ -94,7 +94,7 @@ class MedicineDetailActivity : AppCompatActivity() {
 
         val ndcCode = convertBarcodeToNDC(barcode)
 
-        val query = "openfda.product_ndc:$ndcCode*"
+        val query = "openfda.product_ndc:$ndcCode"
         
         RetrofitInstance.api.searchMedicineNDC(query).enqueue(object : retrofit2.Callback<MedicineResponse> {
             override fun onResponse(call : retrofit2.Call<MedicineResponse>, response: retrofit2.Response<MedicineResponse>){
