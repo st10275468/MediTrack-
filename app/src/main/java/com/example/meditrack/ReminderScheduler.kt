@@ -129,7 +129,6 @@ object ReminderScheduler {
     }
 
     /**
-     * Function to cancel scheduled alarm when reminder is deleted by user
      */
     fun cancelReminder(context: Context, reminderId: String, timesCount: Int) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager

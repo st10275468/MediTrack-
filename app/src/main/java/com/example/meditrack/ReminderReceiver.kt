@@ -25,7 +25,11 @@ class ReminderReceiver : BroadcastReceiver() {
         // Fetches reminder details
         val medicine = intent.getStringExtra("medicine") ?: "Medicine"
         val dosage = intent.getStringExtra("dosage") ?: ""
-        val reminderId = intent.getIntExtra("reminder_id", 0)
+        val reminderId = intent.getStringExtra("reminder_id")?.hashCode() ?: 0
+
+        if (medicine.isNullOrEmpty() || reminderId == 0) {
+            return
+        }
 
         // Displays the notification
         showNotification(context, medicine, dosage, reminderId)
@@ -61,7 +65,7 @@ class ReminderReceiver : BroadcastReceiver() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        // Create notification
+        // Creates notification
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(android.R.drawable.ic_dialog_info)
             .setContentTitle("Time to take $medicine")
