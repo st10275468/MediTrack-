@@ -40,6 +40,13 @@
 
 ---
 
+## Release Notes (Final Updates)
+
+- Added Afrikaans language translation for the app.
+- Added barcode scanner feature.
+- Added Scheduled notifications for pill reminders.
+- Added biometric authentication option. 
+
 ## Video Demonstration
 
 - 

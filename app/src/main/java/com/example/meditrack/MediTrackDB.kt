@@ -21,7 +21,9 @@ abstract class MediTrackDB : RoomDatabase() {
                     context.applicationContext,
                     MediTrackDB::class.java,
                     "meditrack_db"
-                ).build().also { instance = it }
+                ).fallbackToDestructiveMigration()
+                    .build()
+                    .also { instance = it }
             }
     }
 }
