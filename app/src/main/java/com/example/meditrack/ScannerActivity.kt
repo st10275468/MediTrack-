@@ -6,6 +6,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
 
+/**
+ * ScannerActivity.kt
+ *
+ * This activity opens the barcode scanner and redirects the user to the medicineDetailActivity
+ *
+ * Reference:
+ * OpenAI, 2025. ChatGPT [Computer program]. Version GPT-5 mini. Available at: https://chat.openai.com
+ */
+
 class ScannerActivity : AppCompatActivity() {
     override fun attachBaseContext(newBase: Context){
         super.attachBaseContext(LocaleHelper.applyLocale(newBase))
@@ -13,9 +22,12 @@ class ScannerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //Starting the barcode scanner as soon as the activity is opened
         startBarcodeScanner()
     }
 
+    //Starts the ZXing barcode scanner
     private fun startBarcodeScanner(){
         val integrator = IntentIntegrator(this)
 
@@ -28,6 +40,7 @@ class ScannerActivity : AppCompatActivity() {
 
     }
 
+    //Handles the retrieved data from the scanner
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -40,6 +53,7 @@ class ScannerActivity : AppCompatActivity() {
             else{
                 val barcodeValue = result.contents
 
+                //Passes the data and opens the medicineDetailActivity
                 val intent = Intent(this, MedicineDetailActivity::class.java)
                 intent.putExtra("BARCODE", barcodeValue)
                 startActivity(intent)

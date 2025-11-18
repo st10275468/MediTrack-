@@ -77,9 +77,14 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
+        //Retrieving the saved userID
         val savedUID = SecureStorage.getUID(this)
+
+        //Checking if the userID is not null and if the device can use biometric authentication
         if(savedUID != null && SecureStorage.biometricsEnabled(this)){
             if(BiometricHelper.canAuthenticate(this)){
+
+                //Displaying the fingerprint dialog
                 BiometricHelper.showBiometricPrompt(
                     context = this,
                     title = "Login With Biometrics",

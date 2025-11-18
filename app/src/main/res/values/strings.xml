@@ -22,6 +22,7 @@
     <string name="pharmacyMap">Pharmacy Map</string>
     <string name="barcodeScanner">Barcode Scanner</string>
     <string name="account">Account</string>
+    <string name="scanner">Scanner</string>
 
     <string name="facilities">Nearby Medical Facilities</string>
     <string name="medName">Medicine Name</string>
