@@ -9,7 +9,9 @@ import android.widget.*
 import androidx.fragment.app.DialogFragment
 import com.example.meditrack.LocaleHelper
 import com.example.meditrack.R
+import com.example.meditrack.Reminder
 import com.example.meditrack.ReminderActivity
+import com.example.meditrack.ReminderScheduler
 import java.text.SimpleDateFormat
 import java.util.*
 import com.google.android.flexbox.FlexboxLayout
@@ -235,7 +237,24 @@ class AddReminderDialogFragment : DialogFragment() {
                 .document(user.uid)
                 .collection("reminders")
                 .add(reminderMap)
-                .addOnSuccessListener {
+                .addOnSuccessListener { documentReference ->
+                    // creates reminder to save for scheduling
+                    val reminder = Reminder(
+                        medicine = medicine,
+                        dosage = dosage,
+                        startDate = start,
+                        endDate = end,
+                        times = times,
+                        frequency = frequency
+                    )
+
+                    // Schedules reminder
+                    ReminderScheduler.scheduleReminder(
+                        requireContext(),
+                        reminder,
+                        documentReference.id
+                    )
+
                     Toast.makeText(requireContext(), "Reminder saved!", Toast.LENGTH_SHORT).show()
                     val reminderActivity = activity as? ReminderActivity
                     // Refresh reminders page on success
@@ -245,7 +264,6 @@ class AddReminderDialogFragment : DialogFragment() {
                 .addOnFailureListener { e ->
                     Toast.makeText(requireContext(), "Failed to save: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
-
         }
 
 

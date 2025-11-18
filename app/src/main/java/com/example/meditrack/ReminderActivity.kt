@@ -2,9 +2,14 @@ package com.example.meditrack
 
 import AddReminderDialogFragment
 import ReminderAdapter
+import android.app.AlarmManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.Toast
@@ -39,6 +44,9 @@ class ReminderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reminders)
+
+        requestNotificationPermission()
+        checkExactAlarmPermission()
 
         // Setup recycler view
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
@@ -112,6 +120,46 @@ class ReminderActivity : AppCompatActivity() {
     }
 
     /**
+     * Requests permission for notifications from the user
+     */
+    private fun requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestPermissions(
+                    arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
+                    1001
+                )
+            }
+        }
+    }
+
+    /**
+     * Requests permission for exact alarm scheduling from the user
+     */
+    private fun checkExactAlarmPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+            if (!alarmManager.canScheduleExactAlarms()) {
+                // Inform user and redirect to settings
+                Toast.makeText(
+                    this,
+                    "Please enable exact alarm permission for reminders to work",
+                    Toast.LENGTH_LONG
+                ).show()
+
+                try {
+                    val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
+                    startActivity(intent)
+                } catch (e: Exception) {
+                    Log.e("ReminderActivity", "Error opening alarm settings: ${e.message}")
+                }
+            }
+        }
+    }
+
+    /**
      * Method to fetch reminders for current user
      */
     fun fetchReminders() {
@@ -143,6 +191,15 @@ class ReminderActivity : AppCompatActivity() {
                     .get()
                     .addOnSuccessListener { snapshot ->
                         for (doc in snapshot) {
+                            val reminderId = doc.id
+
+                            // Cancels the scheduled alarms as well
+                            ReminderScheduler.cancelReminder(
+                                this,
+                                reminderId,
+                                reminder.times.size
+                            )
+
                             doc.reference.delete()
                         }
                         fetchReminders()
