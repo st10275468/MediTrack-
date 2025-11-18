@@ -59,7 +59,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
         //Settings Menu functionality
-        val settingsIcon = findViewById<ImageView>(R.id.imageView4)
+        val settingsIcon = findViewById<ImageView>(R.id.imageViewSettings)
         settingsIcon.setOnClickListener {
             val popup = PopupMenu(this, settingsIcon)
             popup.menuInflater.inflate(R.menu.menu_settings, popup.menu)
