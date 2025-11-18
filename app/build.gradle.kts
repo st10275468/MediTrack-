@@ -52,6 +52,8 @@ dependencies {
     implementation(libs.androidx.fragment)
     implementation(libs.play.services.location)
     implementation(libs.androidx.cardview)
+    implementation(libs.androidx.room.common.jvm)
+    implementation(libs.androidx.room.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

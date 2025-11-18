@@ -142,7 +142,6 @@ class ReminderActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
             if (!alarmManager.canScheduleExactAlarms()) {
-                // Inform user and redirect to settings
                 Toast.makeText(
                     this,
                     "Please enable exact alarm permission for reminders to work",
