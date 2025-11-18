@@ -11,4 +11,10 @@ interface MedicineApi {
         @Query("search") search: String,
         @Query("limit") limit: Int = 10
     ): Call<MedicineResponse>
+
+    @GET("drug/label.json")
+    fun searchMedicineNDC(
+        @Query("search") ndc: String,
+        @Query("limit") limit: Int = 1
+    ): Call<MedicineResponse>
 }

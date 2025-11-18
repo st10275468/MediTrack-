@@ -91,9 +91,12 @@ class MedicineDetailActivity : AppCompatActivity() {
     }
     
     private fun fetchMedicineByBarcode(barcode: String){
-        val query = "openfda.product_ndc:$barcode*"
+
+        val ndcCode = convertBarcodeToNDC(barcode)
+
+        val query = "openfda.product_ndc:$ndcCode*"
         
-        RetrofitInstance.api.searchMedicine(query).enqueue(object : retrofit2.Callback<MedicineResponse> {
+        RetrofitInstance.api.searchMedicineNDC(query).enqueue(object : retrofit2.Callback<MedicineResponse> {
             override fun onResponse(call : retrofit2.Call<MedicineResponse>, response: retrofit2.Response<MedicineResponse>){
                 if (response.isSuccessful){
 
@@ -123,7 +126,7 @@ class MedicineDetailActivity : AppCompatActivity() {
                     }
                 }
                 else{
-                    Toast.makeText(this@MedicineDetailActivity, "Failed to retrieve medicine info", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MedicineDetailActivity, "Failed to retrieve medicine info: ${response.code()}", Toast.LENGTH_SHORT).show()
                 }
 
             }
@@ -132,5 +135,31 @@ class MedicineDetailActivity : AppCompatActivity() {
                 Toast.makeText(this@MedicineDetailActivity, "API Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    fun convertBarcodeToNDC(barcode: String): String{
+        if(barcode.length != 12){
+            return barcode
+        }
+
+        val withoutCheck = barcode.substring(0, 11)
+
+        return when (withoutCheck.length){
+            10 -> {
+                val labeler = withoutCheck.take(4)
+                val product = withoutCheck.substring(4,8)
+                val packageCode = withoutCheck.takeLast(2)
+                "$labeler-$product-$packageCode"
+            }
+
+        11 -> {
+            val labeler = withoutCheck.take(5)
+            val product = withoutCheck.substring(5,9)
+            val packageCode = withoutCheck.takeLast(2)
+            "$labeler-$product-$packageCode"
+        }
+            else -> barcode
+
+        }
     }
 }
