@@ -53,6 +53,10 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <receiver
+            android:name=".ReminderRescheduler"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
     <uses-feature android:name ="android.hardware.camera.any" android:required="false"/>

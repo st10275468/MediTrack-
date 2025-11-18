@@ -7,7 +7,10 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 /**
  * ReminderReceiver.kt
@@ -20,25 +23,26 @@ import androidx.core.app.NotificationCompat
  */
 class ReminderReceiver : BroadcastReceiver() {
 
+    // Fetches reminder details
     override fun onReceive(context: Context, intent: Intent) {
+        when (intent.action) {
+            Intent.ACTION_BOOT_COMPLETED -> {
+                rescheduleAllReminders(context)
+            }
+            else -> {
+                val medicine = intent.getStringExtra("medicine") ?: return
+                val dosage = intent.getStringExtra("dosage") ?: ""
+                val reminderId = intent.getStringExtra("reminder_id") ?: return
 
-        // Fetches reminder details
-        val medicine = intent.getStringExtra("medicine") ?: "Medicine"
-        val dosage = intent.getStringExtra("dosage") ?: ""
-        val reminderId = intent.getStringExtra("reminder_id")?.hashCode() ?: 0
-
-        if (medicine.isNullOrEmpty() || reminderId == 0) {
-            return
+                showNotification(context, medicine, dosage, reminderId.hashCode())
+            }
         }
-
-        // Displays the notification
-        showNotification(context, medicine, dosage, reminderId)
     }
 
     /**
-    * Method to display reminder notfication
-    */
-    private fun showNotification(context: Context, medicine: String, dosage: String, reminderId: Int ){
+     * Method to display reminder notfication
+     */
+    private fun showNotification(context: Context, medicine: String, dosage: String, notificationId: Int) {
 
         // Fetches the notification service
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -52,6 +56,7 @@ class ReminderReceiver : BroadcastReceiver() {
             ).apply {
                 description = "Notifications for pill reminders"
                 enableVibration(true)
+                enableLights(true)
             }
             notificationManager.createNotificationChannel(channel)
         }
@@ -60,7 +65,7 @@ class ReminderReceiver : BroadcastReceiver() {
         val notificationIntent = Intent(context, ReminderActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(
             context,
-            reminderId,
+            notificationId,
             notificationIntent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
@@ -71,12 +76,41 @@ class ReminderReceiver : BroadcastReceiver() {
             .setContentTitle("Time to take $medicine")
             .setContentText("Dosage: $dosage")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setDefaults(NotificationCompat.DEFAULT_ALL)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
             .build()
 
         // Display notication
-        notificationManager.notify(reminderId, notification)
+        notificationManager.notify(notificationId, notification)
+        Log.d("ReminderReceiver", "Notification displayed for $medicine")
+    }
+
+    /**
+     * Method to reschedule all remidners if the device reboots
+     */
+    private fun rescheduleAllReminders(context: Context) {
+        val user = FirebaseAuth.getInstance().currentUser ?: return
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("users")
+            .document(user.uid)
+            .collection("reminders")
+            .get()
+            .addOnSuccessListener { snapshot ->
+                for (doc in snapshot.documents) {
+                    val reminder = Reminder(
+                        medicine = doc.getString("medicine") ?: "",
+                        dosage = doc.getString("dosage") ?: "",
+                        startDate = doc.getString("startDate") ?: "",
+                        endDate = doc.getString("endDate") ?: "",
+                        times = doc.get("times") as? List<String> ?: emptyList(),
+                        frequency = doc.getString("frequency") ?: ""
+                    )
+                    ReminderScheduler.scheduleReminder(context, reminder, doc.id)
+                }
+                Log.d("ReminderReceiver", "Rescheduled ${snapshot.size()} reminders after boot")
+            }
     }
 
     companion object {
